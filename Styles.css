@@ -1,0 +1,64 @@
+.main-container{
+    background-color: rgb(182, 179, 179);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* row-gap: 10px;
+    column-gap: 20px ; */
+    border: 2px rgb(43, 122, 226) solid;
+    
+
+}
+
+.main-items{
+    margin: 10px;
+    background-color: rgb(230, 162, 162);
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.item-headings{
+    color: rgb(77, 16, 175);
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.All-Data{
+    color: black;
+}
+.All-Data-large-input{
+    width: 300px;
+    height: 30px;
+    border: 2px solid rgb(6, 215, 252);
+    border-radius: 5px;
+}
+
+.it1{
+    background-color: rgb(93, 134, 121);
+    grid-column-start: 1;
+    grid-column-end: 3;
+    color: rgb(0, 4, 255);
+    text-align: center;
+    border: 2px white solid;
+    padding: 10px 10px 10px 10px;
+
+}
+.it2{
+    grid-column-start: 1;
+    grid-column-end: 3;
+   
+}
+.it3{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+/* *Address Container : */
+.address-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+}
+.address-item{
+    background-color: blanchedalmond;
+    border-radius: 10px;
+
+}
