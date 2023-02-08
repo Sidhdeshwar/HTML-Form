@@ -33,12 +33,12 @@
             <h2>Sign-In Detail's :</h2>
             <b class="mandatory-fields">Note : * denoted fields are mandatory.</b><hr>
             <div class="All-Data">
-              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com"/></b> <button type="button" class="btn btn-outline-success">Send OTP</button><br /><br />
+              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com" id="email-id" /></b> <button type="button" class="btn btn-outline-success">Send OTP</button><br /><br />
               <div style="text-align: center"><b>Enter OTP : <input type="number" /></b></div><br /><br />
-              <b class="mandatory-fields">* </b><b>Create Username :<input class="All-Data-large-input" type="text" placeholder="User Name"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Create Password:<input class="All-Data-large-input" type="password" placeholder="Password"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Re-enter Password:<input class="All-Data-large-input" type="password" placeholder="Password" /> </b><br /><br /></div>
-            <button type="button" class="btn btn-primary">Create Account</button><br /><br />
+              <b class="mandatory-fields">* </b><b>Create Username :<input class="All-Data-large-input" type="text" placeholder="User Name" id="username"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Create Password:<input class="All-Data-large-input" type="password" placeholder="Password" id="password"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Verify-Password:<input class="All-Data-large-input" type="password" placeholder="Verify-Password" id="verify-password"/> </b><br /><br /></div>
+            <button type="button" class="btn btn-primary" onclick="createAccount()">Create Account</button><br /><br />
           </div>
         </div>
         <div class="main-items it3">
@@ -46,9 +46,9 @@
             <h2>Personal Detail's :</h2>
             <b class="mandatory-fields">Note : * denoted fields are mandatory.</b><hr />
             <div class="All-Data">
-              <b class="mandatory-fields">* </b><b>First Name :<input class="All-Data-large-input" type="text" placeholder="First Name" /></b>
-              <b>&nbsp; &nbsp;Middle Name :<input class="All-Data-large-input" type="text" placeholder="Middle Name" /></b>
-              <b class="mandatory-fields">* </b><b>Last Name :<input class="All-Data-large-input" type="text" placeholder="Last Name" /></b><br /><br />
+              <b class="mandatory-fields">* </b><b>First Name :<input class="All-Data-large-input" type="text" placeholder="First Name" id="firstname" /></b>
+              <b>&nbsp; &nbsp;Middle Name :<input class="All-Data-large-input" type="text" placeholder="Middle Name" id="middlename"/></b>
+              <b class="mandatory-fields">* </b><b>Last Name :<input class="All-Data-large-input" type="text" placeholder="Last Name" id="lastname" /></b><br /><br />
               
               
                 <p class="LH-Side">
@@ -60,13 +60,13 @@
                       <label class="gender">Female </label>
                 </p>
 
-                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local"> </label> <br><br>
+                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local" id="birth-date"> </label> <br><br>
           
               <div class="address-container">
                 <div class="address-item">
                   <b> &nbsp;&nbsp; Current Address :</b> <br /><hr>
-                  &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
-                  &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
+                  &nbsp; &nbsp; House No. : <input type="text" id="house-no"/><br /><br />
+                  &nbsp; &nbsp; Road/Area : <input type="text" id="road-area"/><br /><br />
                   
                   &nbsp; <b class="mandatory-fields">* </b> State : 
                   <select>
@@ -79,8 +79,8 @@
                            <option>GOA</option>
                   </select> <br /><br />
 
-                  &nbsp; <b class="mandatory-fields">* </b> Village / City <input type="text" /><br /><br />
-                  &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" /><br /><br />
+                  &nbsp; <b class="mandatory-fields">* </b> Village / City <input type="text" id="village-city" /><br /><br />
+                  &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" id="pin-code" /><br /><br />
                 </div>
                 <div class="address-item">
                   &nbsp;&nbsp; &nbsp;&nbsp;
@@ -104,10 +104,10 @@
                   &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" /><br /><br />
                 </div>
               </div>   <br /><br />
-              <b class="mandatory-fields">* </b> <b>Registered E-Mail ID : </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Mobile-1 No :<input class="All-Data-large-input" type="number" /></b>
-              <b>Mobile-2 No :<input class="All-Data-large-input" type="number" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Telephone No :<input class="All-Data-large-input" type="tel" /></b>
+              <b class="mandatory-fields">* </b> <b>Registered E-Mail ID : </b> <label style="color: blue;" id="registered-email"></label> <br /><br />
+              <b class="mandatory-fields">* </b><b>Mobile-1 No :<input class="All-Data-large-input" type="number" id="mobile-no1" /></b>
+              <b>Mobile-2 No :<input class="All-Data-large-input" type="number" id="mobile-no2" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Telephone No :<input class="All-Data-large-input" type="tel" id="telephone-no"/></b>
               <!-- <b class="mandatory-fields">* </b><b> Faveright Song : 
                 <audio controls >
                   <source src="horse.ogg" type="audio/ogg">
@@ -115,7 +115,7 @@
                 </audio>  </b><br /><br /> -->
               <b class="mandatory-fields">* </b><b>
                 <label for="favcolor">Select your favorite color:</label>
-                <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+                <input type="color" id="fav-colour" name="favcolor" value="#ff0000">
               </b><br /><br />
               
               <b class="mandatory-fields">* </b><b>Select File to upload :<input type="file" id="myfile" name="myfile"> </b><br /><br />
@@ -135,7 +135,7 @@
               
 
             </div>
-            <button type="button" class="btn btn-primary">Submit All</button><br /><br />
+            <button type="button" class="btn btn-primary" onclick="submitAll()">Submit All</button><br /><br />
           </div>
         </div>
         <div class="main-items"><b>item-4</b></div>
