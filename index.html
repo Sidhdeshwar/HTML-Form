@@ -15,6 +15,12 @@
       .mandatory-fields {
         color: red;
       }
+      .LH-Side{
+        text-align: start;
+      }
+      .RH-Side{
+        text-align: end;
+      }
     </style>
     <title>HTML Form</title>
   </head>
@@ -43,12 +49,35 @@
               <b class="mandatory-fields">* </b><b>First Name :<input class="All-Data-large-input" type="text" placeholder="First Name" /></b>
               <b>&nbsp; &nbsp;Middle Name :<input class="All-Data-large-input" type="text" placeholder="Middle Name" /></b>
               <b class="mandatory-fields">* </b><b>Last Name :<input class="All-Data-large-input" type="text" placeholder="Last Name" /></b><br /><br />
+              
+              
+                <p class="LH-Side">
+                  <b class="mandatory-fields">* </b> <b>Gender  : &nbsp;&nbsp;<input type="radio"> &nbsp; &nbsp;Male  &nbsp; &nbsp;<input type="radio"> &nbsp; &nbsp;Female</b> 
+                </p>
+                <p class="RH-Side">
+                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local"> </label>
+                </p>
+                
+              
+            
 
               <div class="address-container">
                 <div class="address-item">
                   <b>Current Address :</b> <br />
                   &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
                   &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
+                  
+                  &nbsp; <b class="mandatory-fields">* </b> State : 
+                  <select>
+                           <option>Select State .... </option>
+                           <option>MAHARASTRA</option>
+                           <option>KARNATAKA</option>
+                           <option>KERAL</option>
+                           <option>GUJARAT</option>
+                           <option>RAJASTHAN</option>
+                           <option>GOA</option>
+                  </select> <br /><br />
+
                   &nbsp; <b class="mandatory-fields">* </b> Village / City <input type="text" /><br /><br />
                   &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" /><br /><br />
                 </div>
@@ -58,6 +87,17 @@
                   <b class="mandatory-fields">* </b> <b>Perment Address :</b><br />
                   &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
                   &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
+
+                  &nbsp; <b class="mandatory-fields">* </b> State : 
+                  <select>
+                           <option>MAHARASTRA</option>
+                           <option>KARNATAKA</option>
+                           <option>KERAL</option>
+                           <option>GUJARAT</option>
+                           <option>RAJASTHAN</option>
+                           <option>GOA</option>
+                  </select> <br /><br />
+
                   &nbsp; <b class="mandatory-fields">* </b> Village/City :<input type="text" /><br /><br />
                   &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" /><br /><br />
                 </div>
@@ -65,9 +105,23 @@
               <b class="mandatory-fields">* </b> <b>Registered E-Mail ID : </b><br /><br />
               <b class="mandatory-fields">* </b><b>Mobile-1 No :<input class="All-Data-large-input" type="number" /></b>
               <b>Mobile-2 No :<input class="All-Data-large-input" type="number" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>User Name :<input class="All-Data-large-input" type="text" placeholder="User Name"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input" type="password" placeholder="Password"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Telephone No :<input class="All-Data-large-input" type="tel" /></b>
+              <!-- <b class="mandatory-fields">* </b><b> Faveright Song : 
+                <audio controls >
+                  <source src="horse.ogg" type="audio/ogg">
+                  <source src="horse.mp3" type="audio/mpeg">
+                </audio>  </b><br /><br /> -->
+              <b class="mandatory-fields">* </b><b>
+                <label for="favcolor">Select your favorite color:</label>
+                <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+              </b><br /><br />
+              
+              <b class="mandatory-fields">* </b><b>Password:<input type="file" id="myfile" name="myfile"> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input" type="hidden" /> </b><br /><br /> 
+              <!-- It hides the Data, But it Do not use hidden inputs as a form of security! -->
               <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
+
             </div>
             <button type="button" class="btn btn-primary">Primary</button><br /><br />
           </div>
