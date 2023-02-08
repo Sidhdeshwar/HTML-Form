@@ -116,12 +116,16 @@
                 <input type="color" id="favcolor" name="favcolor" value="#ff0000">
               </b><br /><br />
               
-              <b class="mandatory-fields">* </b><b>Password:<input type="file" id="myfile" name="myfile"> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input" type="hidden" /> </b><br /><br /> 
-              <!-- It hides the Data, But it Do not use hidden inputs as a form of security! -->
-              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Password:<input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
-
+              <b class="mandatory-fields">* </b><b>Select File to upload :<input type="file" id="myfile" name="myfile"> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Hidden Input :<input class="All-Data-large-input" type="hidden" /> </b><br /><br /> 
+              <!-- It hides the Data, But it Do not use hidden inputs as a form of security! 
+              Tip: Always We have to add the <label> tag for best accessibility practices!-->
+              <b class="mandatory-fields">* </b><b>Image Input :<input type="image" src="https://pbs.twimg.com/media/FNkxXSMVIAYyPL8?format=jpg&name=medium" alt="Submit" style="float:right" width="600" height="400"> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="10" value="10" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b> Reset all values to its initial values : &nbsp;&nbsp; <input type="reset" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Password: &nbsp;&nbsp; <input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
+            
             </div>
             <button type="button" class="btn btn-primary">Primary</button><br /><br />
           </div>
