@@ -52,18 +52,19 @@
               
               
                 <p class="LH-Side">
-                  <b class="mandatory-fields">* </b> <b>Gender  : &nbsp;&nbsp;<input type="radio"> &nbsp; &nbsp;Male  &nbsp; &nbsp;<input type="radio"> &nbsp; &nbsp;Female</b> 
+                  <b class="mandatory-fields">* </b> 
+                     <label class="select-gender"> Select a Gender  : </label>
+                      <input type="radio" id="male" name="fav_language" value="MALE">
+                      <label class="gender"> Male </label>
+                      <input type="radio" id="female" name="fav_language" value="FEMALE"> 
+                      <label class="gender">Female </label>
                 </p>
-                <p class="RH-Side">
-                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local"> </label>
-                </p>
-                
-              
-            
 
+                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local"> </label> <br><br>
+          
               <div class="address-container">
                 <div class="address-item">
-                  <b>Current Address :</b> <br />
+                  <b> &nbsp;&nbsp; Current Address :</b> <br /><hr>
                   &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
                   &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
                   
@@ -83,8 +84,9 @@
                 </div>
                 <div class="address-item">
                   &nbsp;&nbsp; &nbsp;&nbsp;
-                  <input type="checkbox" name="Same" id="" value="Same" /> Same as current address <br />
+                  
                   <b class="mandatory-fields">* </b> <b>Perment Address :</b><br />
+                  <input type="checkbox" name="Same" id="" value="Same" /> Same as current address <br /><hr>
                   &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
                   &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
 
@@ -124,10 +126,16 @@
               <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" /> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="10" value="10" /> </b><br /><br />
               <b class="mandatory-fields">* </b><b> Reset all values to its initial values : &nbsp;&nbsp; <input type="reset" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Password: &nbsp;&nbsp; <input class="All-Data-large-input"type="password"placeholder="Password"/> </b><br /><br />
-            
+              <b class="mandatory-fields">* </b><b>Form Text Search: &nbsp;&nbsp; <input class="All-Data-large-input" type="search" id="gsearch" name="gsearch"/> </b><br /><br />
+
+              <b class="mandatory-fields">* </b><b> Form Field Search: &nbsp;&nbsp; <input class="All-Data-large-input" type="time" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Add your homepage: &nbsp;&nbsp; <input class="All-Data-large-input" type="url" id="homepage" name="homepage" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b> Select a week  :  &nbsp;&nbsp; <input class="All-Data-large-input" type="week" id="week" name="week"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b> Submit the Form :  &nbsp;&nbsp; <input  type="submit" id="submit" name="submit"/> </b><br /><br />
+              
+
             </div>
-            <button type="button" class="btn btn-primary">Primary</button><br /><br />
+            <button type="button" class="btn btn-primary">Submit All</button><br /><br />
           </div>
         </div>
         <div class="main-items"><b>item-4</b></div>
