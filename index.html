@@ -33,12 +33,16 @@
             <h2>Sign-In Detail's :</h2>
             <b class="mandatory-fields">Note : * denoted fields are mandatory.</b><hr>
             <div class="All-Data">
-              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com" id="email-id" /></b> <button type="button" class="btn btn-outline-success">Send OTP</button><br /><br />
+              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com" id="email-id" /></b> <button type="button" class="btn btn-outline-success">Send OTP</button>
+               <label style="margin-left: 100px;" id="incorrect-email"></label><br /><br />
               <div style="text-align: center"><b>Enter OTP : <input type="number" /></b></div><br /><br />
               <b class="mandatory-fields">* </b><b>Create Username :<input class="All-Data-large-input" type="text" placeholder="User Name" id="username"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Create Password:<input class="All-Data-large-input" type="password" placeholder="Password" id="password"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Verify-Password:<input class="All-Data-large-input" type="password" placeholder="Verify-Password" id="verify-password"/> </b><br /><br /></div>
-            <button type="button" class="btn btn-primary" onclick="createAccount()">Create Account</button><br /><br />
+              <b class="mandatory-fields">* </b><b>Create Password:<input class="All-Data-large-input" type="password" placeholder="Create New Password" id="password"/> </b>
+              <p style="margin-left: 200px;" id="create-password-wrong" ></p>
+              <p style="color: rgb(55, 58, 204);">Your New Password must be contain : min 8 char's, min 1 Capital & samll letter,min 1 number & min 1 symbol.  </p>
+              <b class="mandatory-fields">* </b><b>Verify-Password:<input class="All-Data-large-input" type="password" placeholder="Verify-Password" id="verify-password"/> </b><br />
+              <p style="margin-left: 200px;" id="incorrect-password" ></p><br /></div>
+            <button type="button" class="btn btn-primary" onclick="createAccount(20)">Create Account</button><br /><br />
           </div>
         </div>
         <div class="main-items it3">
@@ -54,13 +58,13 @@
                 <p class="LH-Side">
                   <b class="mandatory-fields">* </b> 
                      <label class="select-gender"> Select a Gender  : </label>
-                      <input type="radio" id="male" name="fav_language" value="MALE">
+                      <input type="radio" id="male" name="fav_language" value="M">
                       <label class="gender"> Male </label>
-                      <input type="radio" id="female" name="fav_language" value="FEMALE"> 
+                      <input type="radio" id="female" name="fav_language" value="F"> 
                       <label class="gender">Female </label>
                 </p>
-
-                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="datetime-local" id="birth-date"> </label> <br><br>
+                
+                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="date" id="birth-date"> </label> <br><br>
           
               <div class="address-container">
                 <div class="address-item">
@@ -118,23 +122,25 @@
                 <input type="color" id="fav-colour" name="favcolor" value="#ff0000">
               </b><br /><br />
               
-              <b class="mandatory-fields">* </b><b>Select File to upload :<input type="file" id="myfile" name="myfile"> </b><br /><br />
+              
+              <b class="mandatory-fields">* </b><b>Select File to upload :<input type="file" id="select-file" name="myfile"> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Hidden Input :<input class="All-Data-large-input" type="hidden" /> </b><br /><br /> 
               <!-- It hides the Data, But it Do not use hidden inputs as a form of security! 
               Tip: Always We have to add the <label> tag for best accessibility practices!-->
               <b class="mandatory-fields">* </b><b>Image Input :<input type="image" src="https://pbs.twimg.com/media/FNkxXSMVIAYyPL8?format=jpg&name=medium" alt="Submit" style="float:right" width="600" height="400"> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="10" value="10" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" id="select-month"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="10" value="10" id="select-range"/> </b><br /><br />
               <b class="mandatory-fields">* </b><b> Reset all values to its initial values : &nbsp;&nbsp; <input type="reset" /> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Form Text Search: &nbsp;&nbsp; <input class="All-Data-large-input" type="search" id="gsearch" name="gsearch"/> </b><br /><br />
 
-              <b class="mandatory-fields">* </b><b> Form Field Search: &nbsp;&nbsp; <input class="All-Data-large-input" type="time" /> </b><br /><br />
+              <b class="mandatory-fields">* </b><b> Select Time: &nbsp;&nbsp; <input class="All-Data-large-input" type="time" id="select-time"/> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Add your homepage: &nbsp;&nbsp; <input class="All-Data-large-input" type="url" id="homepage" name="homepage" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b> Select a week  :  &nbsp;&nbsp; <input class="All-Data-large-input" type="week" id="week" name="week"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b> Select a week  :  &nbsp;&nbsp; <input class="All-Data-large-input" type="week" id="select-week" name="week"/> </b><br /><br />
               <b class="mandatory-fields">* </b><b> Submit the Form :  &nbsp;&nbsp; <input  type="submit" id="submit" name="submit"/> </b><br /><br />
               
 
             </div>
+            <button onclick="check()">Check</button>
             <button type="button" class="btn btn-primary" onclick="submitAll()">Submit All</button><br /><br />
           </div>
         </div>

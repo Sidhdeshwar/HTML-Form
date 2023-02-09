@@ -1,3 +1,5 @@
+// ^ Automatic Run 
+
 
 //& Sign in Details : 
 const Email_ID = document.getElementById('email-id');
@@ -12,6 +14,7 @@ var sign_in = {
     "email" : 'C',
     "username" : 'A',
     "password" : 'B',
+    "verify_password" : ''
     
  }
 // & Personal Details : 
@@ -34,13 +37,21 @@ const Mobile_No2 = document.getElementById('mobile-no2');
 const Telephone_No = document.getElementById('telephone-no');
 const Fav_Colour = document.getElementById('fav-colour') 
 
+//& Other Details : 
+const Select_File = document.getElementById('select-file');
+//const Select_Image = document.getElementById('select-image');
+const Select_Month = document.getElementById('select-month');
+const Select_Range = document.getElementById('select-range');
+const Select_Time = document.getElementById('select-time');
+const Select_Week = document.getElementById('select-week');
+
 
 
  var personal_details = {
      "first_Name" : '',
      "middle_Name" : '',
      "last_Name" : '',
-     "gender" : true,
+     "gender" : false,
      "DOB" : '',
       "address" : {
         "house_No" : '',
@@ -57,16 +68,100 @@ const Fav_Colour = document.getElementById('fav-colour')
 
  var other_details = {
 
+   "select_file" : '',
+  
+   "select_month" : '',
+   "select_range" : '',
+   "select_time" : '',
+   "select_week" : '',
+
  }
 
- function createAccount()
+ function createAccount(number1)
  {
+   console.log(number1);
     sign_in.email = Email_ID.value;
+    //^ For Checking OF proper E-Mail _ID 
+     let emails = Email_ID.value;
+     document.getElementById('incorrect-email').textContent = "";
+     if((!emails.endsWith('@gmail.com')) )
+     {
+       document.getElementById('incorrect-email').textContent = "In-Correct Email Format";
+       document.getElementById('incorrect-email').style.color = 'red';
+     }
+     for(let i=0 ; i<emails.length ; i++)
+     {
+        if(emails[i]>='A' && emails[i]<='Z')
+        {
+         document.getElementById('incorrect-email').textContent = "In-Correct Email Format";
+         document.getElementById('incorrect-email').style.color = 'red';
+        }
+     }
+
     sign_in.username = UserName.value;
     sign_in.password = Password.value;
     document.getElementById('registered-email').innerHTML = Email_ID.value;
-    user[0]=sign_in;
-    console.log(user);
+   //  ^For checking OK Create Password :
+   let capital = 0;
+   let small = 0;
+   let numbers = 0;
+   let symbols = 0;
+
+   let pass = Password.value; 
+   let Error = [];
+   document.getElementById('create-password-wrong').innerHTML = "";
+   if(pass.length<8)
+   {
+     Error.push("Your password must be contain min 8 character's.");
+   }
+    
+   for(let i=0 ; i<pass.length ; i++)
+   {
+      if(pass[i]>='A' && pass[i]<='Z')
+      capital++;
+
+      if(pass[i]>='a' && pass[i]<='z')
+      small++;
+
+      if(pass[i]>='0' && pass[i]<='9')
+      numbers++;
+
+      if((pass[i]>' ' && pass[i]<='/') || (pass[i]>=':' && pass[i]<='@'))
+      symbols++;
+   }
+    if(capital==0)
+    Error.push("Your Password must be contain min 1 Capital Letter.");
+
+     if(small==0)
+    Error.push("Your Password must be contain min 1 Small Letter.");
+
+     if(numbers==0)
+    Error.push("Your Password must be contain min 1 Number.");
+
+    if(symbols==0)
+    Error.push("Your Password must be contain min 1 Symbol.");
+  
+
+  for(let i=0 ; i<Error.length ; i++)
+  {
+   document.getElementById('create-password-wrong').innerHTML += i+1 +". "+ Error[i]+"<br>"; 
+   document.getElementById('create-password-wrong').style.color = 'red';
+  }
+
+
+
+   // ^For Checking OK Password : 
+    if(Password.value!==Verify_Password.value)
+    {
+      document.getElementById('incorrect-password').innerText = "* incorrect password";
+      document.getElementById('incorrect-password').style.color = "red";
+    }
+
+    if(Password.value===Verify_Password.value && Password.value.length==Verify_Password.value.length)
+    {
+  document.getElementById('incorrect-password').innerText = "**** correct password";
+  document.getElementById('incorrect-password').style.color = "green";
+    }
  }
 
  function submitAll()
@@ -79,7 +174,7 @@ const Fav_Colour = document.getElementById('fav-colour')
     personal_details.DOB = DOB_Date.value;
     personal_details.address.house_No = HouseNo.value;
     personal_details.address.road_area = Road_Area.value;
-    personal_details.address.state = State.value;
+    personal_details.address.state = "Maharastra";
     personal_details.address.village_city = Village_City.value;
     personal_details.address.pin_code = Pin_Code.value;
     personal_details.mobile_No1 = Mobile_No1.value;
@@ -93,3 +188,14 @@ const Fav_Colour = document.getElementById('fav-colour')
 
 
 
+function check()
+{
+   other_details.select_file = Select_File.value;
+   other_details.select_month = Select_Month.value;
+   other_details.select_range = Select_Range.value;
+   other_details.select_time = Select_Time.value;
+   other_details.select_week = Select_Week.value;
+
+   console.log(other_details);
+   window.alert(other_details);
+}
