@@ -199,3 +199,56 @@ function check()
    console.log(other_details);
    window.alert(other_details);
 }
+
+function onKeyUpDown()
+{
+document.getElementById('show-gender').textContent = document.getElementById('male').value;
+// document.getElementById('show-gender').textContent = document.getElementById('female').value;
+// document.getElementById('show-range').textContent = document.getElementById('select-range').value;
+document.getElementById('show-full-name').textContent = FirstName.value;
+
+}
+
+function showDOB()
+{
+   document.getElementById('show-DOB').innerText = DOB_Date.value;
+}
+
+const PHouse_No = document.getElementById('p-house-no');
+const PRoad_Area = document.getElementById('p-road-area');
+const PState = document.getElementById('p-state');
+function selectMyState()
+{
+   document.getElementById('show-state').textContent  = PState.options[PState.selectedIndex].text;
+}
+const PVillage_City = document.getElementById('p-village-city');
+const PPin_Code = document.getElementById('p-pin-code');
+
+function sameAsCurrentAddress()
+{
+   PHouse_No.value = HouseNo.value;
+   PRoad_Area.value = Road_Area.value;
+   // PState.options[PState.selectedIndex].text = State.options[State.selectedIndex].text;
+   PVillage_City.value = Village_City.value;
+   PPin_Code.value = Pin_Code.value;
+}
+
+function showMobileNo()
+{
+   document.getElementById('show-mobile-no').textContent = Mobile_No1.value;
+}
+
+function showRangeMinMax(value)
+{
+    document.getElementById('show-range').textContent = value;
+}
+
+function ShowFavColour(value)
+{
+   document.getElementById('show-fav-colour').textContent = value;
+}
+function ShowMonth()
+{
+   document.getElementById('show-month').textContent = Select_Month.value;
+}
+

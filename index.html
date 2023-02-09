@@ -21,6 +21,9 @@
       .RH-Side{
         text-align: end;
       }
+      .showAll{
+        color: green;
+      }
     </style>
     <title>HTML Form</title>
   </head>
@@ -33,9 +36,10 @@
             <h2>Sign-In Detail's :</h2>
             <b class="mandatory-fields">Note : * denoted fields are mandatory.</b><hr>
             <div class="All-Data">
-              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com" id="email-id" /></b> <button type="button" class="btn btn-outline-success">Send OTP</button>
-               <label style="margin-left: 100px;" id="incorrect-email"></label><br /><br />
-              <div style="text-align: center"><b>Enter OTP : <input type="number" /></b></div><br /><br />
+              <b class="mandatory-fields">* </b><b>E-Mail ID :<input class="All-Data-large-input" type="email" placeholder="example@gmail.com" id="email-id" /></b> 
+              <!-- <button type="button" class="btn btn-outline-success">Send OTP</button> -->
+              <br> <label style="margin-left: 100px;" id="incorrect-email"></label><br>
+              <!-- <div style="text-align: center"><b>Enter OTP : <input type="number" /></b></div><br /><br /> -->
               <b class="mandatory-fields">* </b><b>Create Username :<input class="All-Data-large-input" type="text" placeholder="User Name" id="username"/> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Create Password:<input class="All-Data-large-input" type="password" placeholder="Create New Password" id="password"/> </b>
               <p style="margin-left: 200px;" id="create-password-wrong" ></p>
@@ -50,21 +54,20 @@
             <h2>Personal Detail's :</h2>
             <b class="mandatory-fields">Note : * denoted fields are mandatory.</b><hr />
             <div class="All-Data">
-              <b class="mandatory-fields">* </b><b>First Name :<input class="All-Data-large-input" type="text" placeholder="First Name" id="firstname" /></b>
-              <b>&nbsp; &nbsp;Middle Name :<input class="All-Data-large-input" type="text" placeholder="Middle Name" id="middlename"/></b>
-              <b class="mandatory-fields">* </b><b>Last Name :<input class="All-Data-large-input" type="text" placeholder="Last Name" id="lastname" /></b><br /><br />
-              
+              <b class="mandatory-fields">* </b><b>Full Name :<input style="width: 600px;" onkeyup="onKeyUpDown()" class="All-Data-large-input" type="text" placeholder="Enter your Full Name" id="firstname" /></b>
+            
+              <p class="showAll" id="show-full-name" >Show Full Name : </p>
+              <b class="mandatory-fields">* </b> <b>Registered E-Mail ID : </b> <label style="color: blue;" id="registered-email"></label> <br /><br />
               
                 <p class="LH-Side">
                   <b class="mandatory-fields">* </b> 
                      <label class="select-gender"> Select a Gender  : </label>
-                      <input type="radio" id="male" name="fav_language" value="M">
+                      <input type="radio" id="male" name="fav_language" value="M" onclick="onKeyUpDown()">
                       <label class="gender"> Male </label>
-                      <input type="radio" id="female" name="fav_language" value="F"> 
-                      <label class="gender">Female </label>
+                      <input type="radio" id="male" name="fav_language" value="F" onclick="onKeyUpDown()"> 
+                      <label class="gender">Female </label><b id="show-gender" style="color: green;" >Show Gender : </b>
                 </p>
-                
-                  <b class="mandatory-fields">* </b> <label for="datetime">Date of Birth : &nbsp;&nbsp; <input type="date" id="birth-date"> </label> <br><br>
+                <p>Date of Birth : &nbsp;&nbsp; <input type="date" id="birth-date" onchange="showDOB()">  </p> <p  class="showAll" id="show-DOB">Show DOB : </p>
           
               <div class="address-container">
                 <div class="address-item">
@@ -73,7 +76,7 @@
                   &nbsp; &nbsp; Road/Area : <input type="text" id="road-area"/><br /><br />
                   
                   &nbsp; <b class="mandatory-fields">* </b> State : 
-                  <select>
+                  <select id="p-state" onchange="selectMyState()">
                            <option>Select State .... </option>
                            <option>MAHARASTRA</option>
                            <option>KARNATAKA</option>
@@ -81,7 +84,8 @@
                            <option>GUJARAT</option>
                            <option>RAJASTHAN</option>
                            <option>GOA</option>
-                  </select> <br /><br />
+                  </select> <br />
+                  <p id="show-state" class="showAll">Show State : </p><br />
 
                   &nbsp; <b class="mandatory-fields">* </b> Village / City <input type="text" id="village-city" /><br /><br />
                   &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" id="pin-code" /><br /><br />
@@ -90,28 +94,30 @@
                   &nbsp;&nbsp; &nbsp;&nbsp;
                   
                   <b class="mandatory-fields">* </b> <b>Perment Address :</b><br />
-                  <input type="checkbox" name="Same" id="" value="Same" /> Same as current address <br /><hr>
-                  &nbsp; &nbsp; House No. : <input type="text" /><br /><br />
-                  &nbsp; &nbsp; Road/Area : <input type="text" /><br /><br />
+                  <input type="checkbox" name="Same" id="" value="Same" onclick="sameAsCurrentAddress()"/> Same as current address <br /><hr>
+                  &nbsp; &nbsp; House No. : <input type="text" id="p-house-no" /><br /><br />
+                  &nbsp; &nbsp; Road/Area : <input type="text" id="p-road-area"/><br /><br />
 
-                  &nbsp; <b class="mandatory-fields">* </b> State : 
-                  <select>
+                  &nbsp; <b class="mandatory-fields" >* </b> State : 
+                  <select id="p-state" onchange="selectMyState()">
                            <option>MAHARASTRA</option>
                            <option>KARNATAKA</option>
                            <option>KERAL</option>
                            <option>GUJARAT</option>
                            <option>RAJASTHAN</option>
                            <option>GOA</option>
-                  </select> <br /><br />
+                  </select> 
+                   <br /><br />
 
-                  &nbsp; <b class="mandatory-fields">* </b> Village/City :<input type="text" /><br /><br />
-                  &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" /><br /><br />
+                  &nbsp; <b class="mandatory-fields">* </b> Village/City :<input type="text" id="p-village-city"/><br /><br />
+                  &nbsp; <b class="mandatory-fields">* </b> Pin Code :<input type="text" id="p-pin-code"/><br /><br />
                 </div>
               </div>   <br /><br />
-              <b class="mandatory-fields">* </b> <b>Registered E-Mail ID : </b> <label style="color: blue;" id="registered-email"></label> <br /><br />
-              <b class="mandatory-fields">* </b><b>Mobile-1 No :<input class="All-Data-large-input" type="number" id="mobile-no1" /></b>
-              <b>Mobile-2 No :<input class="All-Data-large-input" type="number" id="mobile-no2" /> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Telephone No :<input class="All-Data-large-input" type="tel" id="telephone-no"/></b>
+              
+              <b class="mandatory-fields">* </b><b>Mobile-1 No :<input onkeyup="showMobileNo()" class="All-Data-large-input" type="number" id="mobile-no1" /></b>
+              <p class="showAll" id="show-mobile-no">Show Mobile No : </p>
+              <!-- <b>Mobile-2 No :<input class="All-Data-large-input" type="number" id="mobile-no2" /> </b><br /><br /> -->
+              <!-- <b class="mandatory-fields">* </b><b>Telephone No :<input class="All-Data-large-input" type="tel" id="telephone-no"/></b> -->
               <!-- <b class="mandatory-fields">* </b><b> Faveright Song : 
                 <audio controls >
                   <source src="horse.ogg" type="audio/ogg">
@@ -119,8 +125,10 @@
                 </audio>  </b><br /><br /> -->
               <b class="mandatory-fields">* </b><b>
                 <label for="favcolor">Select your favorite color:</label>
-                <input type="color" id="fav-colour" name="favcolor" value="#ff0000">
-              </b><br /><br />
+                <input type="color" id="fav-colour" name="favcolor" value="#ff0000" onchange="ShowFavColour(value)">
+
+              </b>
+              <p class="showAll" id="show-fav-colour">Show Colour ID : </p><br /><br />
               
               
               <b class="mandatory-fields">* </b><b>Select File to upload :<input type="file" id="select-file" name="myfile"> </b><br /><br />
@@ -128,8 +136,9 @@
               <!-- It hides the Data, But it Do not use hidden inputs as a form of security! 
               Tip: Always We have to add the <label> tag for best accessibility practices!-->
               <b class="mandatory-fields">* </b><b>Image Input :<input type="image" src="https://pbs.twimg.com/media/FNkxXSMVIAYyPL8?format=jpg&name=medium" alt="Submit" style="float:right" width="600" height="400"> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" id="select-month"/> </b><br /><br />
-              <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="10" value="10" id="select-range"/> </b><br /><br />
+              <b class="mandatory-fields">* </b><b>Month: &nbsp;&nbsp; <input  type="month" id="select-month" onchange="ShowMonth()"/> </b>
+              <p class="showAll" id="show-month">Show Month : </p><br /><br />
+              <b class="mandatory-fields">* </b><b>Select Range: &nbsp;&nbsp; <input class="All-Data-large-input" type="range" max="100" min="0" step="5" value="10" id="select-range" onchange="showRangeMinMax(value)"/> </b><br /> <b id="show-range" style="color: green; ">Show Range : </b> <br />
               <b class="mandatory-fields">* </b><b> Reset all values to its initial values : &nbsp;&nbsp; <input type="reset" /> </b><br /><br />
               <b class="mandatory-fields">* </b><b>Form Text Search: &nbsp;&nbsp; <input class="All-Data-large-input" type="search" id="gsearch" name="gsearch"/> </b><br /><br />
 
