@@ -1,4 +1,16 @@
 // ^ Automatic Run 
+var signInMandatoryCounter = 0;
+var personalDetMandatoryCounter = 0;
+
+var OKEMAIL=false;
+ var OKUSERNAME=false;
+var OKCREATEPASSWORD=false;
+var OKVERIFYPASSWORD=false;
+
+var OKSTATE = false;
+var OKVILLAGE = false;
+var OKPIN = false;
+
 
 
 //& Sign in Details : 
@@ -15,7 +27,6 @@ var sign_in = {
     "username" : 'A',
     "password" : 'B',
     "verify_password" : ''
-    
  }
 // & Personal Details : 
 const FirstName = document.getElementById('firstname');
@@ -77,6 +88,29 @@ const Select_Week = document.getElementById('select-week');
 
  }
 
+ function checkForSignIn()
+ {
+   if((Email_ID.value.length==0 || UserName.value.length==0 || Password.value.length==0 || Verify_Password.value.length==0))
+   {
+      window.alert(OKUSERNAME);
+     document.getElementById('sign-in-remaining-fields').textContent = "Please, fill the required fields...";
+     document.getElementById('sign-in-remaining-fields').style.color = "red";
+   }
+
+   else if((OKEMAIL===true && OKUSERNAME===true && OKCREATEPASSWORD===true && OKVERIFYPASSWORD===true))
+   {
+      window.alert(OKUSERNAME);
+      createAccount();
+      document.getElementById('sign-in-remaining-fields').innerHTML = "Congrats... Your Account has been Created Successfully...";
+      document.getElementById('sign-in-remaining-fields').style.color = 'green';
+   }
+   else
+   {
+      document.getElementById('sign-in-remaining-fields').textContent = "Please, fill the required fields...";
+      document.getElementById('sign-in-remaining-fields').style.color = "red";
+   }
+ }
+
  function createAccount()
  {
    
@@ -89,6 +123,11 @@ const Select_Week = document.getElementById('select-week');
        document.getElementById('incorrect-email').textContent = "In-Correct Email Format";
        document.getElementById('incorrect-email').style.color = 'red';
      }
+     else
+     {
+      signInMandatoryCounter++;
+     }
+
      for(let i=0 ; i<emails.length ; i++)
      {
         if(emails[i]>='A' && emails[i]<='Z')
@@ -99,11 +138,125 @@ const Select_Week = document.getElementById('select-week');
      }
 
     sign_in.username = UserName.value;
+
+    if(UserName.value.length!=0)
+    signInMandatoryCounter++;
+
     sign_in.password = Password.value;
     document.getElementById('registered-email').innerHTML = Email_ID.value;
    
+  //  ^For checking OK Create Password :
+    let capital = 0;
+    let small = 0;
+    let numbers = 0;
+    let symbols = 0;
+    let okpassword = 0;
+ 
+    let pass = Password.value; 
+    let Error = [];
+    document.getElementById('create-password-wrong').innerHTML = "";
+    if(pass.length<8)
+    {
+      Error.push("Your password must be contain min 8 character's.");
+    }
+     
+    for(let i=0 ; i<pass.length ; i++)
+    {
+       if(pass[i]>='A' && pass[i]<='Z')
+       capital++;
+ 
+       if(pass[i]>='a' && pass[i]<='z')
+       small++;
+ 
+       if(pass[i]>='0' && pass[i]<='9')
+       numbers++;
+ 
+       if((pass[i]>' ' && pass[i]<='/') || (pass[i]>=':' && pass[i]<='@'))
+       symbols++;
+    }
+     if(capital==0)
+     Error.push("Your Password must be contain min 1 Capital Letter.");
+ 
+      if(small==0)
+     Error.push("Your Password must be contain min 1 Small Letter.");
+ 
+      if(numbers==0)
+     Error.push("Your Password must be contain min 1 Number.");
+ 
+     if(symbols==0)
+     Error.push("Your Password must be contain min 1 Symbol.");
 
+     if(capital!=0 && small!=0 && numbers!=0 && symbols!=0 && pass.length>=8)
+     {
+      Error.push("OK Password");
+      okpassword++;
+     }
+     
+   if(okpassword!=0)
+   {
+      for(let i=0 ; i<Error.length ; i++)
+      {
+       document.getElementById('create-password-wrong').innerHTML += " "+ Error[i]+"<br>"; 
+       document.getElementById('create-password-wrong').style.color = 'green';
+       signInMandatoryCounter++;
 
+      }
+   }
+ else
+ {
+   for(let i=0 ; i<Error.length ; i++)
+   {
+    document.getElementById('create-password-wrong').innerHTML += i+1 +". "+ Error[i]+"<br>"; 
+    document.getElementById('create-password-wrong').style.color = 'red';
+   }
+ }
+
+ //^ For Verify Password Checking 
+ if(Password.value!==Verify_Password.value)
+ {
+   document.getElementById('incorrect-password').innerText = "* incorrect password";
+   document.getElementById('incorrect-password').style.color = "red";
+ }
+
+ if(Password.value===Verify_Password.value && Password.value.length==Verify_Password.value.length)
+ {
+document.getElementById('incorrect-password').innerText = "**** correct password";
+document.getElementById('incorrect-password').style.color = "green";
+OKVERIFYPASSWORD++;
+
+ }
+
+ if(signInMandatoryCounter==4)
+ {
+      
+      document.getElementById('sign-in-remaining-fields').innerHTML = `
+      
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Your Account Created Successfully...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK  </button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      `
+ }
+ else
+ {
+   document.getElementById('sign-in-remaining-fields').textContent = "Please, fill the required fields...";
+   document.getElementById('sign-in-remaining-fields').style.color = "red";
+ }
+     
  }
 
  function submitAll()
@@ -199,6 +352,9 @@ function runtimeCreatePassword()
       {
        document.getElementById('create-password-wrong').innerHTML += " "+ Error[i]+"<br>"; 
        document.getElementById('create-password-wrong').style.color = 'green';
+       OKCREATEPASSWORD=true;
+       console.log("Create Password : "+OKCREATEPASSWORD)
+       runtimePasswordChecking();
       }
    }
  else
@@ -207,6 +363,7 @@ function runtimeCreatePassword()
    {
     document.getElementById('create-password-wrong').innerHTML += i+1 +". "+ Error[i]+"<br>"; 
     document.getElementById('create-password-wrong').style.color = 'red';
+    OKCREATEPASSWORD = false;
    }
  }
   
@@ -219,15 +376,54 @@ function runtimePasswordChecking()
    {
      document.getElementById('incorrect-password').innerText = "* incorrect password";
      document.getElementById('incorrect-password').style.color = "red";
+     OKVERIFYPASSWORD=false;
    }
 
    if(Password.value===Verify_Password.value && Password.value.length==Verify_Password.value.length)
    {
  document.getElementById('incorrect-password').innerText = "**** correct password";
  document.getElementById('incorrect-password').style.color = "green";
+ OKVERIFYPASSWORD = true;
+ console.log("Verify Password : "+OKVERIFYPASSWORD);
    }
 }
 
+//! Showing Wrong Field 
+
+function showWrongEmail()
+{
+   let emails = Email_ID.value;
+   document.getElementById('incorrect-email').textContent = "";
+   if((!emails.endsWith('@gmail.com')) )
+   {
+      document.getElementById('email-id').style.border = "2px solid red"
+      document.getElementById('incorrect-email').textContent = "Wrong E-Mail Format";
+      document.getElementById('incorrect-email').style.color = "red";
+      OKEMAIL=false;
+   }
+   else
+   {
+      document.getElementById('incorrect-email').textContent = "OK Email Format";
+      document.getElementById('incorrect-email').style.color = "green";
+    document.getElementById('email-id').style.border = "2px solid green"
+     OKEMAIL = true;
+     console.log("Email : "+OKEMAIL);
+   }
+}
+function userNameEntered()
+{
+   if(UserName.value.length>0)
+   {
+      OKUSERNAME=true;
+      console.log("UserName :"+OKUSERNAME);
+   }
+   else
+   {
+      OKUSERNAME = false;
+      console.log("UserName :"+OKUSERNAME);
+   }
+   
+}
 
 
 //* For Showing Input in Green Colour 
@@ -257,6 +453,8 @@ const PState = document.getElementById('p-state');
 function selectMyState()
 {
    document.getElementById('show-state').textContent  = PState.options[PState.selectedIndex].text;
+   OKSTATE = true;
+   console.log("State : "+ OKSTATE);
 }
 const PVillage_City = document.getElementById('p-village-city');
 const PPin_Code = document.getElementById('p-pin-code');
@@ -289,3 +487,16 @@ function ShowMonth()
    document.getElementById('show-month').textContent = Select_Month.value;
 }
 
+
+//& Personal Details : 
+const PERPin = document.getElementById('per-pin');
+const PERVillage = document.getElementById('per-villege');
+
+function submitAllValue()
+{
+   if(OKSTATE==true && (Village_City.value.length>0 && Pin_Code.value.length>0 && PERPin.value.length>0 && PERVillage.value.length>0))
+   window.alert("Congratulations.... All Form Submitted.");
+
+   else
+    window.alert("Please, fill all required fields.");
+}
