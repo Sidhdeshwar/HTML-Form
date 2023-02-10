@@ -77,9 +77,9 @@ const Select_Week = document.getElementById('select-week');
 
  }
 
- function createAccount(number1)
+ function createAccount()
  {
-   console.log(number1);
+   
     sign_in.email = Email_ID.value;
     //^ For Checking OF proper E-Mail _ID 
      let emails = Email_ID.value;
@@ -101,67 +101,9 @@ const Select_Week = document.getElementById('select-week');
     sign_in.username = UserName.value;
     sign_in.password = Password.value;
     document.getElementById('registered-email').innerHTML = Email_ID.value;
-   //  ^For checking OK Create Password :
-   let capital = 0;
-   let small = 0;
-   let numbers = 0;
-   let symbols = 0;
-
-   let pass = Password.value; 
-   let Error = [];
-   document.getElementById('create-password-wrong').innerHTML = "";
-   if(pass.length<8)
-   {
-     Error.push("Your password must be contain min 8 character's.");
-   }
-    
-   for(let i=0 ; i<pass.length ; i++)
-   {
-      if(pass[i]>='A' && pass[i]<='Z')
-      capital++;
-
-      if(pass[i]>='a' && pass[i]<='z')
-      small++;
-
-      if(pass[i]>='0' && pass[i]<='9')
-      numbers++;
-
-      if((pass[i]>' ' && pass[i]<='/') || (pass[i]>=':' && pass[i]<='@'))
-      symbols++;
-   }
-    if(capital==0)
-    Error.push("Your Password must be contain min 1 Capital Letter.");
-
-     if(small==0)
-    Error.push("Your Password must be contain min 1 Small Letter.");
-
-     if(numbers==0)
-    Error.push("Your Password must be contain min 1 Number.");
-
-    if(symbols==0)
-    Error.push("Your Password must be contain min 1 Symbol.");
-  
-
-  for(let i=0 ; i<Error.length ; i++)
-  {
-   document.getElementById('create-password-wrong').innerHTML += i+1 +". "+ Error[i]+"<br>"; 
-   document.getElementById('create-password-wrong').style.color = 'red';
-  }
+   
 
 
-
-   // ^For Checking OK Password : 
-    if(Password.value!==Verify_Password.value)
-    {
-      document.getElementById('incorrect-password').innerText = "* incorrect password";
-      document.getElementById('incorrect-password').style.color = "red";
-    }
-
-    if(Password.value===Verify_Password.value && Password.value.length==Verify_Password.value.length)
-    {
-  document.getElementById('incorrect-password').innerText = "**** correct password";
-  document.getElementById('incorrect-password').style.color = "green";
-    }
  }
 
  function submitAll()
@@ -200,13 +142,108 @@ function check()
    window.alert(other_details);
 }
 
-function onKeyUpDown()
+//* For Showing Runtime Create Password : 
+
+function runtimeCreatePassword()
 {
-document.getElementById('show-gender').textContent = document.getElementById('male').value;
+    //  ^For checking OK Create Password :
+    let capital = 0;
+    let small = 0;
+    let numbers = 0;
+    let symbols = 0;
+    let okpassword = 0;
+ 
+    let pass = Password.value; 
+    let Error = [];
+    document.getElementById('create-password-wrong').innerHTML = "";
+    if(pass.length<8)
+    {
+      Error.push("Your password must be contain min 8 character's.");
+    }
+     
+    for(let i=0 ; i<pass.length ; i++)
+    {
+       if(pass[i]>='A' && pass[i]<='Z')
+       capital++;
+ 
+       if(pass[i]>='a' && pass[i]<='z')
+       small++;
+ 
+       if(pass[i]>='0' && pass[i]<='9')
+       numbers++;
+ 
+       if((pass[i]>' ' && pass[i]<='/') || (pass[i]>=':' && pass[i]<='@'))
+       symbols++;
+    }
+     if(capital==0)
+     Error.push("Your Password must be contain min 1 Capital Letter.");
+ 
+      if(small==0)
+     Error.push("Your Password must be contain min 1 Small Letter.");
+ 
+      if(numbers==0)
+     Error.push("Your Password must be contain min 1 Number.");
+ 
+     if(symbols==0)
+     Error.push("Your Password must be contain min 1 Symbol.");
+
+     if(capital!=0 && small!=0 && numbers!=0 && symbols!=0 && pass.length>=8)
+     {
+      Error.push("OK Password");
+      okpassword++;
+     }
+     
+   if(okpassword!=0)
+   {
+      for(let i=0 ; i<Error.length ; i++)
+      {
+       document.getElementById('create-password-wrong').innerHTML += " "+ Error[i]+"<br>"; 
+       document.getElementById('create-password-wrong').style.color = 'green';
+      }
+   }
+ else
+ {
+   for(let i=0 ; i<Error.length ; i++)
+   {
+    document.getElementById('create-password-wrong').innerHTML += i+1 +". "+ Error[i]+"<br>"; 
+    document.getElementById('create-password-wrong').style.color = 'red';
+   }
+ }
+  
+}
+
+function runtimePasswordChecking()
+{
+   
+   if(Password.value!==Verify_Password.value)
+   {
+     document.getElementById('incorrect-password').innerText = "* incorrect password";
+     document.getElementById('incorrect-password').style.color = "red";
+   }
+
+   if(Password.value===Verify_Password.value && Password.value.length==Verify_Password.value.length)
+   {
+ document.getElementById('incorrect-password').innerText = "**** correct password";
+ document.getElementById('incorrect-password').style.color = "green";
+   }
+}
+
+
+
+//* For Showing Input in Green Colour 
+
+function showGender(value)
+{
+document.getElementById('show-gender').textContent = value;
 // document.getElementById('show-gender').textContent = document.getElementById('female').value;
 // document.getElementById('show-range').textContent = document.getElementById('select-range').value;
-document.getElementById('show-full-name').textContent = FirstName.value;
+// document.getElementById('show-full-name').textContent = FirstName.value;
 
+}
+
+function showFullName()
+{
+   document.getElementById('show-full-name').textContent = FirstName.value;
 }
 
 function showDOB()
