@@ -495,8 +495,22 @@ const PERVillage = document.getElementById('per-villege');
 function submitAllValue()
 {
    if(OKSTATE==true && (Village_City.value.length>0 && Pin_Code.value.length>0 && PERPin.value.length>0 && PERVillage.value.length>0))
-   window.alert("Congratulations.... All Form Submitted.");
-
+   {
+      document.getElementById('sign-in-remaining-fields-submitAll').textContent = "Congratulations.... All Form Submitted.";
+      document.getElementById('sign-in-remaining-fields-submitAll').style.color = "green";
+   
+   }
+  
    else
-    window.alert("Please, fill all required fields.");
+   {
+      document.getElementById('sign-in-remaining-fields-submitAll').textContent = "Please Fill the required Fields.";
+      document.getElementById('sign-in-remaining-fields-submitAll').style.color = "red";
+   }
+    //window.alert("Please, fill all required fields.");
+}
+
+function selectIMAGE()
+{   
+   document.getElementById('show-img').setAttribute("src","/home/am-pc-67/Pictures/Wallpapers/diwali.jpg");
+   document.getElementById('img-location').textContent = Select_File.value;
 }

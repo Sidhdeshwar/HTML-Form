@@ -139,7 +139,9 @@
               <p class="showAll" id="show-fav-colour">Show Colour ID : </p><br /><br />
               
               
-              <b>Select File to upload :<input type="file" id="select-file" name="myfile"> </b><br /><br />
+              <b>Select File to upload :<input type="file" id="select-file" name="myfile" onclick="selectIMAGE()"> </b><br /><br />
+              <img id="show-img" >
+              <p id="img-location">IMG Location</p>
               <!-- <b class="mandatory-fields">* </b><b>Hidden Input :<input class="All-Data-large-input" type="hidden" /> </b><br /><br />  -->
               <!-- It hides the Data, But it Do not use hidden inputs as a form of security! 
               Tip: Always We have to add the <label> tag for best accessibility practices!-->
@@ -158,6 +160,7 @@
 
             </div>
             <!-- <button onclick="check()">Check</button> -->
+            <b id="sign-in-remaining-fields-submitAll"></b><br>
             <button type="button" class="btn btn-primary" onclick="submitAllValue()">Submit All</button><br /><br />
           </div>
         </div>
