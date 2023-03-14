@@ -460,7 +460,8 @@ function submitAllValue() {
         (document.getElementById("sign-in-remaining-fields-submitAll")).textContent = "Congratulations.... All Form Submitted Successfully.";
         (document.getElementById("sign-in-remaining-fields-submitAll")).style.color = "green";
         addToObject();
-        document.getElementById("clapIMG").style.display = "block";
+        document.getElementById("clapIMG").style.display =
+            "block";
     }
     else {
         (document.getElementById("sign-in-remaining-fields-submitAll")).textContent = "Please Fill the required Fields.";

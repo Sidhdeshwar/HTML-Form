@@ -206,7 +206,6 @@ var other_details = {
 };
 
 function checkForSignIn() {
- 
   if (
     Email_ID.value.length == 0 ||
     UserName.value.length == 0 ||
@@ -652,7 +651,8 @@ function submitAllValue() {
       document.getElementById("sign-in-remaining-fields-submitAll")
     )).style.color = "green";
     addToObject();
-    (document.getElementById("clapIMG") as HTMLDivElement).style.display = "block";
+    (document.getElementById("clapIMG") as HTMLDivElement).style.display =
+      "block";
   } else {
     (<HTMLInputElement>(
       document.getElementById("sign-in-remaining-fields-submitAll")
