@@ -47,7 +47,7 @@
 .it3 {
   grid-column-start: 1;
   grid-column-end: 3;
-  /* display: none; */
+  display: none;
 }
 /* *Address Container : */
 .address-container {

@@ -1,3 +1,34 @@
+"use strict";
+// & Personal Details :
+const FirstName = document.getElementById("firstname");
+const MiddleName = document.getElementById("middlename");
+const LastName = document.getElementById("lastname");
+const Male = document.getElementById("male");
+const Female = document.getElementById("female");
+const DOB_Date = document.getElementById("birth-date");
+// Address
+const HouseNo = document.getElementById("house-no");
+const Road_Area = document.getElementById("road-area");
+const State = document.getElementById("state"); //* Remaining
+const Village_City1 = document.getElementById("village1");
+const Pin_Code1 = document.getElementById("pin-code-11");
+const Mobile_No1 = document.getElementById("mobile-no1");
+const Telephone_No = document.getElementById("telephone-no");
+const Fav_Colour = document.getElementById("fav-colour");
+//& Other Details :
+const Select_File = document.getElementById("select-file");
+//const Select_Image = document.getElementById('select-image');
+const Select_Month = document.getElementById("select-month");
+const Select_Range = document.getElementById("select-range");
+const Select_Time = document.getElementById("select-time");
+const Select_Week = document.getElementById("select-week");
+const PHouse_No = document.getElementById("p-house-no");
+const PRoad_Area = document.getElementById("p-road-area");
+const PState = document.getElementById("p-state");
+const Perment_State = document.getElementById("perment-state");
+const PVillage_City = document.getElementById("p-village-city");
+const PPin_Code2 = document.getElementById("pin-code-22");
+const PVillage_City2 = document.getElementById("village2");
 // ~LocalStorage :
 var Selected_Gender = "";
 var Selected_Imagae_Address = "";
@@ -14,16 +45,16 @@ function addToObject() {
         Current_Address: {
             House_No: HouseNo.value,
             Road_Area: Road_Area.value,
-            State: "MAHARASTRA",
+            State: PState.value,
             Village_City: Village_City1.value,
-            Pin_Code: Pin_Code1.value
+            Pin_Code: Pin_Code1.value,
         },
         Perment_Address: {
             House_No: PHouse_No.value,
             Road_Area: PRoad_Area.value,
             State: PState.value,
             Village_City: PVillage_City2.value,
-            Pin_Code: PPin_Code2.value
+            Pin_Code: PPin_Code2.value,
         },
         Mobile_No: Mobile_No1.value,
         Select_Color: Fav_Colour.value,
@@ -31,16 +62,16 @@ function addToObject() {
         Select_Range: Select_Range.value,
         Select_Month: Select_Month.value,
         Select_Time: Select_Time.value,
-        Select_Week: Select_Week.value
+        Select_Week: Select_Week.value,
     };
     localStorage.setItem("obj1", JSON.stringify(myForm));
     fetch("https://winter-summer-sceptre.glitch.me/submit", {
         method: "POST",
         body: JSON.stringify(myForm),
-        headers: { "Content-type": "application/json" }
+        headers: { "Content-type": "application/json" },
     })
-        .then(function (response) { return response.json(); })
-        .then(function (json) { return console.log(json); });
+        .then((response) => response.json())
+        .then((json) => console.log(json));
 }
 // ^ Automatic Run
 var signInMandatoryCounter = 0;
@@ -53,10 +84,10 @@ var OKSTATE = false;
 var OKVILLAGE = false;
 var OKPIN = false;
 //& Sign in Details :
-var Email_ID = document.getElementById("email-id");
-var UserName = document.getElementById("username");
-var Password = document.getElementById("password");
-var Verify_Password = document.getElementById("verify-password");
+const Email_ID = document.getElementById("email-id");
+const UserName = document.getElementById("username");
+const Password = document.getElementById("password");
+const Verify_Password = (document.getElementById("verify-password"));
 var HTML_Form = [
     [1, 2, 3],
     [4, 5, 6],
@@ -66,122 +97,98 @@ var sign_in = {
     email: "C",
     username: "A",
     password: "B",
-    verify_password: ""
+    verify_password: "",
 };
-// & Personal Details :
-var FirstName = document.getElementById("firstname");
-var MiddleName = document.getElementById("middlename");
-var LastName = document.getElementById("lastname");
-var Male = document.getElementById("male");
-var Female = document.getElementById("female");
-var DOB_Date = document.getElementById("birth-date");
-// Address
-var HouseNo = document.getElementById("house-no");
-var Road_Area = document.getElementById("road-area");
-var State = document.getElementById("state"); //* Remaining
-var Village_City1 = document.getElementById("village1");
-var Pin_Code1 = document.getElementById("pin-code-11");
-var Mobile_No1 = document.getElementById("mobile-no1");
-var Telephone_No = document.getElementById("telephone-no");
-var Fav_Colour = document.getElementById("fav-colour");
-//& Other Details :
-var Select_File = document.getElementById("select-file");
-//const Select_Image = document.getElementById('select-image');
-var Select_Month = document.getElementById("select-month");
-var Select_Range = document.getElementById("select-range");
-var Select_Time = document.getElementById("select-time");
-var Select_Week = document.getElementById("select-week");
 var personal_details = {
     first_Name: "",
     middle_Name: "",
     last_Name: "",
-    gender: false,
+    gender: "",
     DOB: "",
     address: {
         house_No: "",
         road_area: "",
         state: "",
         village_city: "",
-        pin_code: ""
+        pin_code: "",
     },
     mobile_No1: "",
     mobile_No2: "",
     telephone_No: "",
-    fav_Colour: ""
+    fav_Colour: "",
 };
 var other_details = {
     select_file: "",
     select_month: "",
     select_range: "",
     select_time: "",
-    select_week: ""
+    select_week: "",
 };
 function checkForSignIn() {
-    //   document.getElementById("it3").style.display = "block";
-    //   document.getElementById("it2").style.display = "none";
     if (Email_ID.value.length == 0 ||
         UserName.value.length == 0 ||
         Password.value.length == 0 ||
         Verify_Password.value.length == 0) {
-        window.alert(OKUSERNAME);
-        document.getElementById("sign-in-remaining-fields").textContent =
-            "Please, fill the required fields...";
-        document.getElementById("sign-in-remaining-fields").style.color = "red";
+        // window.alert(OKUSERNAME);
+        (document.getElementById("sign-in-remaining-fields")).textContent = "Please, fill the required fields...";
+        (document.getElementById("sign-in-remaining-fields")).style.color = "red";
     }
     else if (OKEMAIL === true &&
         OKUSERNAME === true &&
         OKCREATEPASSWORD === true &&
         OKVERIFYPASSWORD === true) {
-        window.alert(OKUSERNAME);
+        document.getElementById("it3").style.display = "block";
+        document.getElementById("it2").style.display = "none";
+        // window.alert(OKUSERNAME);
         createAccount();
-        document.getElementById("sign-in-remaining-fields").innerHTML =
-            "Congrats... Your Account has been Created Successfully...";
-        document.getElementById("sign-in-remaining-fields").style.color = "green";
+        (document.getElementById("sign-in-remaining-fields")).innerHTML = "Congrats... Your Account has been Created Successfully...";
+        (document.getElementById("sign-in-remaining-fields")).style.color = "green";
     }
     else {
-        document.getElementById("sign-in-remaining-fields").textContent =
-            "Please, fill the required fields...";
-        document.getElementById("sign-in-remaining-fields").style.color = "red";
+        (document.getElementById("sign-in-remaining-fields")).textContent = "Please, fill the required fields...";
+        (document.getElementById("sign-in-remaining-fields")).style.color = "red";
     }
 }
 function createAccount() {
     sign_in.email = Email_ID.value;
     //^ For Checking OF proper E-Mail _ID
-    var emails = Email_ID.value;
-    document.getElementById("incorrect-email").textContent = "";
-    if (!emails.endsWith("@gmail.com")) {
+    let emails = Email_ID.value;
+    document.getElementById("incorrect-email").textContent =
+        "";
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
         document.getElementById("incorrect-email").textContent =
             "In-Correct Email Format";
-        document.getElementById("incorrect-email").style.color = "red";
+        document.getElementById("incorrect-email").style.color =
+            "red";
     }
     else {
         signInMandatoryCounter++;
     }
-    for (var i = 0; i < emails.length; i++) {
+    for (let i = 0; i < emails.length; i++) {
         if (emails[i] >= "A" && emails[i] <= "Z") {
-            document.getElementById("incorrect-email").textContent =
-                "In-Correct Email Format";
-            document.getElementById("incorrect-email").style.color = "red";
+            (document.getElementById("incorrect-email")).textContent = "In-Correct Email Format";
+            (document.getElementById("incorrect-email")).style.color = "red";
         }
     }
     sign_in.username = UserName.value;
     if (UserName.value.length != 0)
         signInMandatoryCounter++;
     sign_in.password = Password.value;
-    document.getElementById("registered-email").innerHTML = Email_ID.value;
+    document.getElementById("registered-email").innerHTML =
+        Email_ID.value;
     //  ^For checking OK Create Password :
-    var capital = 0;
-    var small = 0;
-    var numbers = 0;
-    var symbols = 0;
-    var okpassword = 0;
-    var pass = Password.value;
-    var Error = [];
-    document.getElementById("create-password-wrong").innerHTML = "";
+    let capital = 0;
+    let small = 0;
+    let numbers = 0;
+    let symbols = 0;
+    let okpassword = 0;
+    let pass = Password.value;
+    let Error = [];
+    (document.getElementById("create-password-wrong")).innerHTML = "";
     if (pass.length < 8) {
         Error.push("Your password must be contain min 8 character's.");
     }
-    for (var i = 0; i < pass.length; i++) {
+    for (let i = 0; i < pass.length; i++) {
         if (pass[i] >= "A" && pass[i] <= "Z")
             capital++;
         if (pass[i] >= "a" && pass[i] <= "z")
@@ -208,40 +215,55 @@ function createAccount() {
         okpassword++;
     }
     if (okpassword != 0) {
-        for (var i = 0; i < Error.length; i++) {
-            document.getElementById("create-password-wrong").innerHTML +=
-                " " + Error[i] + "<br>";
-            document.getElementById("create-password-wrong").style.color = "green";
+        for (let i = 0; i < Error.length; i++) {
+            (document.getElementById("create-password-wrong")).innerHTML += " " + Error[i] + "<br>";
+            (document.getElementById("create-password-wrong")).style.color = "green";
             signInMandatoryCounter++;
         }
     }
     else {
-        for (var i = 0; i < Error.length; i++) {
-            document.getElementById("create-password-wrong").innerHTML +=
-                i + 1 + ". " + Error[i] + "<br>";
-            document.getElementById("create-password-wrong").style.color = "red";
+        for (let i = 0; i < Error.length; i++) {
+            (document.getElementById("create-password-wrong")).innerHTML += i + 1 + ". " + Error[i] + "<br>";
+            (document.getElementById("create-password-wrong")).style.color = "red";
         }
     }
     //^ For Verify Password Checking
     if (Password.value !== Verify_Password.value) {
-        document.getElementById("incorrect-password").innerText =
-            "* incorrect password";
-        document.getElementById("incorrect-password").style.color = "red";
+        (document.getElementById("incorrect-password")).innerText = "* incorrect password";
+        (document.getElementById("incorrect-password")).style.color = "red";
     }
     if (Password.value === Verify_Password.value &&
         Password.value.length == Verify_Password.value.length) {
-        document.getElementById("incorrect-password").innerText =
-            "**** correct password";
-        document.getElementById("incorrect-password").style.color = "green";
+        (document.getElementById("incorrect-password")).innerText = "**** correct password";
+        (document.getElementById("incorrect-password")).style.color = "green";
         OKVERIFYPASSWORD++;
     }
     if (signInMandatoryCounter == 4) {
-        document.getElementById("sign-in-remaining-fields").innerHTML = "\n      \n      <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Modal title</h1>\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n        Your Account Created Successfully...\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" data-bs-dismiss=\"modal\">OK  </button>\n      </div>\n    </div>\n  </div>\n</div>\n      \n      ";
+        (document.getElementById("sign-in-remaining-fields")).innerHTML = `
+      
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Your Account Created Successfully...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK  </button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      `;
     }
     else {
-        document.getElementById("sign-in-remaining-fields").textContent =
-            "Please, fill the required fields...";
-        document.getElementById("sign-in-remaining-fields").style.color = "red";
+        (document.getElementById("sign-in-remaining-fields")).textContent = "Please, fill the required fields...";
+        (document.getElementById("sign-in-remaining-fields")).style.color = "red";
     }
 }
 function submitAll() {
@@ -254,10 +276,10 @@ function submitAll() {
     personal_details.address.house_No = HouseNo.value;
     personal_details.address.road_area = Road_Area.value;
     personal_details.address.state = "Maharastra";
-    personal_details.address.village_city = Village_City.value;
-    personal_details.address.pin_code = Pin_Code.value;
+    personal_details.address.village_city = Village_City1.value;
+    personal_details.address.pin_code = Pin_Code1.value;
     personal_details.mobile_No1 = Mobile_No1.value;
-    personal_details.mobile_No2 = Mobile_No2.value;
+    // personal_details.mobile_No2 = Mobile_No2.value;
     personal_details.telephone_No = Telephone_No.value;
     personal_details.fav_Colour = Fav_Colour.value;
     console.log(personal_details);
@@ -274,18 +296,18 @@ function check() {
 //* For Showing Runtime Create Password :
 function runtimeCreatePassword() {
     //  ^For checking OK Create Password :
-    var capital = 0;
-    var small = 0;
-    var numbers = 0;
-    var symbols = 0;
-    var okpassword = 0;
-    var pass = Password.value;
-    var Error = [];
-    document.getElementById("create-password-wrong").innerHTML = "";
+    let capital = 0;
+    let small = 0;
+    let numbers = 0;
+    let symbols = 0;
+    let okpassword = 0;
+    let pass = Password.value;
+    let Error = [];
+    (document.getElementById("create-password-wrong")).innerHTML = "";
     if (pass.length < 8) {
         Error.push("Your password must be contain min 8 character's.");
     }
-    for (var i = 0; i < pass.length; i++) {
+    for (let i = 0; i < pass.length; i++) {
         if (pass[i] >= "A" && pass[i] <= "Z")
             capital++;
         if (pass[i] >= "a" && pass[i] <= "z")
@@ -312,57 +334,59 @@ function runtimeCreatePassword() {
         okpassword++;
     }
     if (okpassword != 0) {
-        for (var i = 0; i < Error.length; i++) {
-            document.getElementById("create-password-wrong").innerHTML +=
-                " " + Error[i] + "<br>";
-            document.getElementById("create-password-wrong").style.color = "green";
+        for (let i = 0; i < Error.length; i++) {
+            document.getElementById("create-password-wrong").innerHTML += " " + Error[i] + "<br>";
+            (document.getElementById("create-password-wrong")).style.color = "green";
             OKCREATEPASSWORD = true;
             console.log("Create Password : " + OKCREATEPASSWORD);
             runtimePasswordChecking();
         }
     }
     else {
-        for (var i = 0; i < Error.length; i++) {
-            document.getElementById("create-password-wrong").innerHTML +=
-                i + 1 + ". " + Error[i] + "<br>";
-            document.getElementById("create-password-wrong").style.color = "red";
+        for (let i = 0; i < Error.length; i++) {
+            (document.getElementById("create-password-wrong")).innerHTML += i + 1 + ". " + Error[i] + "<br>";
+            (document.getElementById("create-password-wrong")).style.color = "red";
             OKCREATEPASSWORD = false;
         }
     }
 }
 function runtimePasswordChecking() {
     if (Password.value !== Verify_Password.value) {
-        document.getElementById("incorrect-password").innerText =
-            "* incorrect password";
-        document.getElementById("incorrect-password").style.color = "red";
+        (document.getElementById("incorrect-password")).innerText = "* incorrect password";
+        (document.getElementById("incorrect-password")).style.color = "red";
         OKVERIFYPASSWORD = false;
     }
     if (Password.value === Verify_Password.value &&
         Password.value.length == Verify_Password.value.length) {
-        document.getElementById("incorrect-password").innerText =
-            "**** correct password";
-        document.getElementById("incorrect-password").style.color = "green";
+        (document.getElementById("incorrect-password")).innerText = "**** correct password";
+        (document.getElementById("incorrect-password")).style.color = "green";
         OKVERIFYPASSWORD = true;
         console.log("Verify Password : " + OKVERIFYPASSWORD);
     }
 }
 //! Showing Wrong Field
 function showWrongEmail() {
-    var emails = Email_ID.value;
-    document.getElementById("incorrect-email").textContent = "";
-    if (!emails.endsWith("@gmail.com")) {
-        document.getElementById("email-id").style.border = "2px solid red";
+    let emails = Email_ID.value;
+    document.getElementById("incorrect-email").textContent =
+        "";
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
         document.getElementById("incorrect-email").textContent =
-            "Wrong E-Mail Format";
-        document.getElementById("incorrect-email").style.color = "red";
-        OKEMAIL = false;
-    }
-    else {
-        document.getElementById("incorrect-email").textContent = "OK Email Format";
-        document.getElementById("incorrect-email").style.color = "green";
-        document.getElementById("email-id").style.border = "2px solid green";
+            "OK Email Format";
+        document.getElementById("incorrect-email").style.color =
+            "green";
+        document.getElementById("email-id").style.border =
+            "2px solid green";
         OKEMAIL = true;
         console.log("Email : " + OKEMAIL);
+    }
+    else {
+        document.getElementById("email-id").style.border =
+            "2px solid red";
+        document.getElementById("incorrect-email").textContent =
+            "Wrong E-Mail Format";
+        document.getElementById("incorrect-email").style.color =
+            "red";
+        OKEMAIL = false;
     }
 }
 function userNameEntered() {
@@ -377,86 +401,94 @@ function userNameEntered() {
 }
 //* For Showing Input in Green Colour
 function showGender(value) {
-    document.getElementById("show-gender").textContent = value;
+    document.getElementById("show-gender").textContent =
+        value;
     Selected_Gender = value;
     // document.getElementById('show-gender').textContent = document.getElementById('female').value;
     // document.getElementById('show-range').textContent = document.getElementById('select-range').value;
     // document.getElementById('show-full-name').textContent = FirstName.value;
 }
 function showFullName() {
-    document.getElementById("show-full-name").textContent = FirstName.value;
+    document.getElementById("show-full-name").textContent =
+        FirstName.value;
 }
 function showDOB() {
-    document.getElementById("show-DOB").innerText = DOB_Date.value;
+    document.getElementById("show-DOB").innerText =
+        DOB_Date.value;
     window.alert(DOB_Date.value);
 }
-var PHouse_No = document.getElementById("p-house-no");
-var PRoad_Area = document.getElementById("p-road-area");
-var PState = document.getElementById("p-state");
 function selectMyState() {
     document.getElementById("show-state").textContent =
-        PState.options[PState.selectedIndex].text;
+        PState.value;
+    //   PState.options[PState.selectedIndex].text;
     OKSTATE = true;
-    console.log("State : " + OKSTATE);
+    // console.log("State : " + OKSTATE);
+    console.log(PState.value);
 }
-var PVillage_City = document.getElementById("p-village-city");
-var PPin_Code2 = document.getElementById("pin-code-22");
-var PVillage_City2 = document.getElementById("village2");
 function sameAsCurrentAddress(value) {
     // document.getElementById("chBox").textContent = value;
     PHouse_No.value = HouseNo.value;
     PRoad_Area.value = Road_Area.value;
     PVillage_City2.value = Village_City1.value;
-    // PState.options[PState.selectedIndex].text = State.options[State.selectedIndex].text;
+    Perment_State.value = PState.value;
     PPin_Code2.value = Pin_Code1.value;
 }
 function showMobileNo() {
-    document.getElementById("show-mobile-no").textContent = Mobile_No1.value;
+    document.getElementById("show-mobile-no").textContent =
+        Mobile_No1.value;
 }
 function showRangeMinMax(value) {
     document.getElementById("show-range").textContent = value;
 }
 function ShowFavColour(value) {
-    document.getElementById("show-fav-colour").textContent = value;
+    document.getElementById("show-fav-colour").textContent =
+        value;
 }
 function ShowMonth() {
-    document.getElementById("show-month").textContent = Select_Month.value;
+    document.getElementById("show-month").textContent =
+        Select_Month.value;
 }
 //& Personal Details :
-var PERPin = document.getElementById("per-pin");
-var PERVillage = document.getElementById("per-villege");
+const PERPin = document.getElementById("per-pin");
+const PERVillage = document.getElementById("per-villege");
 function submitAllValue() {
     if (OKSTATE == true &&
         Village_City1.value.length > 0 &&
         Pin_Code1.value.length > 0 &&
         PVillage_City2.value.length > 0 &&
         PPin_Code2.value.length > 0) {
-        document.getElementById("sign-in-remaining-fields-submitAll").textContent =
-            "Congratulations.... All Form Submitted.";
-        document.getElementById("sign-in-remaining-fields-submitAll").style.color =
-            "green";
+        (document.getElementById("sign-in-remaining-fields-submitAll")).textContent = "Congratulations.... All Form Submitted Successfully.";
+        (document.getElementById("sign-in-remaining-fields-submitAll")).style.color = "green";
         addToObject();
+        document.getElementById("clapIMG").style.display = "block";
     }
     else {
-        document.getElementById("sign-in-remaining-fields-submitAll").textContent =
-            "Please Fill the required Fields.";
-        document.getElementById("sign-in-remaining-fields-submitAll").style.color =
-            "red";
+        (document.getElementById("sign-in-remaining-fields-submitAll")).textContent = "Please Fill the required Fields.";
+        (document.getElementById("sign-in-remaining-fields-submitAll")).style.color = "red";
     }
     //window.alert("Please, fill all required fields.");
 }
 function selectIMAGE() {
-    var preview = document.getElementById("showIMG");
-    var file = document.getElementById("selectIMG").files[0];
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        preview.src = reader.result;
-        Selected_Imagae_Address = reader.result;
+    // var preview = document.getElementById("showIMG") as HTMLImageElement;
+    // var file = document.getElementById("selectIMG") as HTMLInputElement;
+    // console.log(file.src);
+    // let html = `
+    // <img src="${file.value}">
+    // `;
+    // preview.innerHTML += html;
+}
+var src = document.getElementById("src");
+var target = document.getElementById("target");
+showImage(src, target);
+function showImage(src, target) {
+    var fr = new FileReader();
+    // when image is loaded, set the src of the image where you want to display it
+    fr.onload = function (e) {
+        target.src = this.result;
+        Selected_Imagae_Address = src.value;
     };
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-    else {
-        preview.src = "";
-    }
+    src.addEventListener("change", function () {
+        // fill fr with image data
+        fr.readAsDataURL(src.files[0]);
+    });
 }

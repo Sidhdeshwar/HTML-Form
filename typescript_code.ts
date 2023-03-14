@@ -1,8 +1,80 @@
+// & Personal Details :
+const FirstName = <HTMLInputElement>document.getElementById("firstname");
+const MiddleName = <HTMLInputElement>document.getElementById("middlename");
+const LastName = <HTMLInputElement>document.getElementById("lastname");
+const Male = <HTMLInputElement>document.getElementById("male");
+const Female = <HTMLInputElement>document.getElementById("female");
+const DOB_Date = <HTMLInputElement>document.getElementById("birth-date");
+
+// Address
+const HouseNo = <HTMLInputElement>document.getElementById("house-no");
+const Road_Area = <HTMLInputElement>document.getElementById("road-area");
+const State = <HTMLInputElement>document.getElementById("state"); //* Remaining
+const Village_City1 = <HTMLInputElement>document.getElementById("village1");
+const Pin_Code1 = <HTMLInputElement>document.getElementById("pin-code-11");
+
+const Mobile_No1 = <HTMLInputElement>document.getElementById("mobile-no1");
+const Telephone_No = <HTMLInputElement>document.getElementById("telephone-no");
+const Fav_Colour = <HTMLInputElement>document.getElementById("fav-colour");
+
+//& Other Details :
+const Select_File = <HTMLInputElement>document.getElementById("select-file");
+//const Select_Image = document.getElementById('select-image');
+const Select_Month = <HTMLInputElement>document.getElementById("select-month");
+const Select_Range = <HTMLInputElement>document.getElementById("select-range");
+const Select_Time = <HTMLInputElement>document.getElementById("select-time");
+const Select_Week = <HTMLInputElement>document.getElementById("select-week");
+
+const PHouse_No = document.getElementById("p-house-no") as HTMLInputElement;
+const PRoad_Area = document.getElementById("p-road-area") as HTMLInputElement;
+const PState = document.getElementById("p-state") as HTMLSelectElement;
+const Perment_State = document.getElementById(
+  "perment-state"
+) as HTMLSelectElement;
+const PVillage_City = document.getElementById(
+  "p-village-city"
+) as HTMLInputElement;
+const PPin_Code2 = document.getElementById("pin-code-22") as HTMLInputElement;
+const PVillage_City2 = document.getElementById("village2") as HTMLInputElement;
+
 // ~LocalStorage :
 var Selected_Gender = "";
 var Selected_Imagae_Address = "";
+
+interface myform_interface {
+  Email_ID: string;
+  Create_Username: string;
+  Create_Passward: string;
+  Verify_Passward: string;
+  Full_Name: string;
+  Regiatered_Email: string;
+  Gender: string;
+  Birth_Date: string;
+  Current_Address: {
+    House_No: string;
+    Road_Area: string;
+    State: string;
+    Village_City: string;
+    Pin_Code: string;
+  };
+  Perment_Address: {
+    House_No: string;
+    Road_Area: string;
+    State: string;
+    Village_City: string;
+    Pin_Code: string;
+  };
+  Mobile_No: string;
+  Select_Color: string;
+  Select_File: string;
+  Select_Range: string;
+  Select_Month: string;
+  Select_Time: string;
+  Select_Week: string;
+}
+
 function addToObject() {
-  var myForm = {
+  var myForm: myform_interface = {
     Email_ID: Email_ID.value,
     Create_Username: UserName.value,
     Create_Passward: Password.value,
@@ -14,7 +86,7 @@ function addToObject() {
     Current_Address: {
       House_No: HouseNo.value,
       Road_Area: Road_Area.value,
-      State: "MAHARASTRA",
+      State: PState.value,
       Village_City: Village_City1.value,
       Pin_Code: Pin_Code1.value,
     },
@@ -78,32 +150,7 @@ var sign_in = {
   password: "B",
   verify_password: "",
 };
-// & Personal Details :
-const FirstName = <HTMLInputElement>document.getElementById("firstname");
-const MiddleName = <HTMLInputElement>document.getElementById("middlename");
-const LastName = <HTMLInputElement>document.getElementById("lastname");
-const Male = <HTMLInputElement>document.getElementById("male");
-const Female = <HTMLInputElement>document.getElementById("female");
-const DOB_Date = <HTMLInputElement>document.getElementById("birth-date");
 
-// Address
-const HouseNo = <HTMLInputElement>document.getElementById("house-no");
-const Road_Area = <HTMLInputElement>document.getElementById("road-area");
-const State = <HTMLInputElement>document.getElementById("state"); //* Remaining
-const Village_City1 = <HTMLInputElement>document.getElementById("village1");
-const Pin_Code1 = <HTMLInputElement>document.getElementById("pin-code-11");
-
-const Mobile_No1 = <HTMLInputElement>document.getElementById("mobile-no1");
-const Telephone_No = <HTMLInputElement>document.getElementById("telephone-no");
-const Fav_Colour = <HTMLInputElement>document.getElementById("fav-colour");
-
-//& Other Details :
-const Select_File = <HTMLInputElement>document.getElementById("select-file");
-//const Select_Image = document.getElementById('select-image');
-const Select_Month = <HTMLInputElement>document.getElementById("select-month");
-const Select_Range = <HTMLInputElement>document.getElementById("select-range");
-const Select_Time = <HTMLInputElement>document.getElementById("select-time");
-const Select_Week = <HTMLInputElement>document.getElementById("select-week");
 interface personal_details_obj {
   first_Name: string;
   middle_Name: string;
@@ -159,15 +206,14 @@ var other_details = {
 };
 
 function checkForSignIn() {
-  //   document.getElementById("it3").style.display = "block";
-  //   document.getElementById("it2").style.display = "none";
+ 
   if (
     Email_ID.value.length == 0 ||
     UserName.value.length == 0 ||
     Password.value.length == 0 ||
     Verify_Password.value.length == 0
   ) {
-    window.alert(OKUSERNAME);
+    // window.alert(OKUSERNAME);
     (<HTMLInputElement>(
       document.getElementById("sign-in-remaining-fields")
     )).textContent = "Please, fill the required fields...";
@@ -180,8 +226,12 @@ function checkForSignIn() {
     OKCREATEPASSWORD === true &&
     OKVERIFYPASSWORD === true
   ) {
-    window.alert(OKUSERNAME);
+    (document.getElementById("it3") as HTMLDivElement).style.display = "block";
+    (document.getElementById("it2") as HTMLDivElement).style.display = "none";
+
+    // window.alert(OKUSERNAME);
     createAccount();
+
     (<HTMLInputElement>(
       document.getElementById("sign-in-remaining-fields")
     )).innerHTML = "Congrats... Your Account has been Created Successfully...";
@@ -201,10 +251,10 @@ function checkForSignIn() {
 function createAccount() {
   sign_in.email = Email_ID.value;
   //^ For Checking OF proper E-Mail _ID
-  let emails = Email_ID.value;
+  let emails: string = Email_ID.value;
   (<HTMLInputElement>document.getElementById("incorrect-email")).textContent =
     "";
-  if (!emails.endsWith("@gmail.com")) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
     (<HTMLInputElement>document.getElementById("incorrect-email")).textContent =
       "In-Correct Email Format";
     (<HTMLInputElement>document.getElementById("incorrect-email")).style.color =
@@ -367,10 +417,10 @@ function submitAll() {
   personal_details.address.house_No = HouseNo.value;
   personal_details.address.road_area = Road_Area.value;
   personal_details.address.state = "Maharastra";
-  personal_details.address.village_city = Village_City.value;
-  personal_details.address.pin_code = Pin_Code.value;
+  personal_details.address.village_city = Village_City1.value;
+  personal_details.address.pin_code = Pin_Code1.value;
   personal_details.mobile_No1 = Mobile_No1.value;
-  personal_details.mobile_No2 = Mobile_No2.value;
+  // personal_details.mobile_No2 = Mobile_No2.value;
   personal_details.telephone_No = Telephone_No.value;
   personal_details.fav_Colour = Fav_Colour.value;
 
@@ -400,7 +450,9 @@ function runtimeCreatePassword() {
 
   let pass = Password.value;
   let Error = [];
-  document.getElementById("create-password-wrong").innerHTML = "";
+  (<HTMLInputElement>(
+    document.getElementById("create-password-wrong")
+  )).innerHTML = "";
   if (pass.length < 8) {
     Error.push("Your password must be contain min 8 character's.");
   }
@@ -438,18 +490,24 @@ function runtimeCreatePassword() {
 
   if (okpassword != 0) {
     for (let i = 0; i < Error.length; i++) {
-      document.getElementById("create-password-wrong").innerHTML +=
-        " " + Error[i] + "<br>";
-      document.getElementById("create-password-wrong").style.color = "green";
+      (
+        document.getElementById("create-password-wrong") as HTMLInputElement
+      ).innerHTML += " " + Error[i] + "<br>";
+      (<HTMLInputElement>(
+        document.getElementById("create-password-wrong")
+      )).style.color = "green";
       OKCREATEPASSWORD = true;
       console.log("Create Password : " + OKCREATEPASSWORD);
       runtimePasswordChecking();
     }
   } else {
     for (let i = 0; i < Error.length; i++) {
-      document.getElementById("create-password-wrong").innerHTML +=
-        i + 1 + ". " + Error[i] + "<br>";
-      document.getElementById("create-password-wrong").style.color = "red";
+      (<HTMLInputElement>(
+        document.getElementById("create-password-wrong")
+      )).innerHTML += i + 1 + ". " + Error[i] + "<br>";
+      (<HTMLInputElement>(
+        document.getElementById("create-password-wrong")
+      )).style.color = "red";
       OKCREATEPASSWORD = false;
     }
   }
@@ -457,9 +515,12 @@ function runtimeCreatePassword() {
 
 function runtimePasswordChecking() {
   if (Password.value !== Verify_Password.value) {
-    document.getElementById("incorrect-password").innerText =
-      "* incorrect password";
-    document.getElementById("incorrect-password").style.color = "red";
+    (<HTMLInputElement>(
+      document.getElementById("incorrect-password")
+    )).innerText = "* incorrect password";
+    (<HTMLInputElement>(
+      document.getElementById("incorrect-password")
+    )).style.color = "red";
     OKVERIFYPASSWORD = false;
   }
 
@@ -467,9 +528,12 @@ function runtimePasswordChecking() {
     Password.value === Verify_Password.value &&
     Password.value.length == Verify_Password.value.length
   ) {
-    document.getElementById("incorrect-password").innerText =
-      "**** correct password";
-    document.getElementById("incorrect-password").style.color = "green";
+    (<HTMLInputElement>(
+      document.getElementById("incorrect-password")
+    )).innerText = "**** correct password";
+    (<HTMLInputElement>(
+      document.getElementById("incorrect-password")
+    )).style.color = "green";
     OKVERIFYPASSWORD = true;
     console.log("Verify Password : " + OKVERIFYPASSWORD);
   }
@@ -479,19 +543,25 @@ function runtimePasswordChecking() {
 
 function showWrongEmail() {
   let emails = Email_ID.value;
-  document.getElementById("incorrect-email").textContent = "";
-  if (!emails.endsWith("@gmail.com")) {
-    document.getElementById("email-id").style.border = "2px solid red";
-    document.getElementById("incorrect-email").textContent =
-      "Wrong E-Mail Format";
-    document.getElementById("incorrect-email").style.color = "red";
-    OKEMAIL = false;
-  } else {
-    document.getElementById("incorrect-email").textContent = "OK Email Format";
-    document.getElementById("incorrect-email").style.color = "green";
-    document.getElementById("email-id").style.border = "2px solid green";
+  (<HTMLInputElement>document.getElementById("incorrect-email")).textContent =
+    "";
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
+    (<HTMLInputElement>document.getElementById("incorrect-email")).textContent =
+      "OK Email Format";
+    (<HTMLInputElement>document.getElementById("incorrect-email")).style.color =
+      "green";
+    (<HTMLInputElement>document.getElementById("email-id")).style.border =
+      "2px solid green";
     OKEMAIL = true;
     console.log("Email : " + OKEMAIL);
+  } else {
+    (<HTMLInputElement>document.getElementById("email-id")).style.border =
+      "2px solid red";
+    (<HTMLInputElement>document.getElementById("incorrect-email")).textContent =
+      "Wrong E-Mail Format";
+    (<HTMLInputElement>document.getElementById("incorrect-email")).style.color =
+      "red";
+    OKEMAIL = false;
   }
 }
 function userNameEntered() {
@@ -506,8 +576,9 @@ function userNameEntered() {
 
 //* For Showing Input in Green Colour
 
-function showGender(value) {
-  document.getElementById("show-gender").textContent = value;
+function showGender(value: any) {
+  (<HTMLInputElement>document.getElementById("show-gender")).textContent =
+    value;
   Selected_Gender = value;
   // document.getElementById('show-gender').textContent = document.getElementById('female').value;
   // document.getElementById('show-range').textContent = document.getElementById('select-range').value;
@@ -515,49 +586,51 @@ function showGender(value) {
 }
 
 function showFullName() {
-  document.getElementById("show-full-name").textContent = FirstName.value;
+  (<HTMLInputElement>document.getElementById("show-full-name")).textContent =
+    FirstName.value;
 }
 
 function showDOB() {
-  document.getElementById("show-DOB").innerText = DOB_Date.value;
+  (<HTMLInputElement>document.getElementById("show-DOB")).innerText =
+    DOB_Date.value;
   window.alert(DOB_Date.value);
 }
 
-const PHouse_No = document.getElementById("p-house-no");
-const PRoad_Area = document.getElementById("p-road-area");
-const PState = document.getElementById("p-state");
 function selectMyState() {
-  document.getElementById("show-state").textContent =
-    PState.options[PState.selectedIndex].text;
+  (document.getElementById("show-state") as HTMLParagraphElement).textContent =
+    PState.value;
+  //   PState.options[PState.selectedIndex].text;
   OKSTATE = true;
-  console.log("State : " + OKSTATE);
-}
-const PVillage_City = document.getElementById("p-village-city");
-const PPin_Code2 = document.getElementById("pin-code-22");
-const PVillage_City2 = document.getElementById("village2");
+  // console.log("State : " + OKSTATE);
 
-function sameAsCurrentAddress(value) {
+  console.log(PState.value);
+}
+
+function sameAsCurrentAddress(value: any) {
   // document.getElementById("chBox").textContent = value;
   PHouse_No.value = HouseNo.value;
   PRoad_Area.value = Road_Area.value;
   PVillage_City2.value = Village_City1.value;
-  // PState.options[PState.selectedIndex].text = State.options[State.selectedIndex].text;
+  Perment_State.value = PState.value;
   PPin_Code2.value = Pin_Code1.value;
 }
 
 function showMobileNo() {
-  document.getElementById("show-mobile-no").textContent = Mobile_No1.value;
+  (<HTMLInputElement>document.getElementById("show-mobile-no")).textContent =
+    Mobile_No1.value;
 }
 
-function showRangeMinMax(value) {
-  document.getElementById("show-range").textContent = value;
+function showRangeMinMax(value: any) {
+  (<HTMLInputElement>document.getElementById("show-range")).textContent = value;
 }
 
-function ShowFavColour(value) {
-  document.getElementById("show-fav-colour").textContent = value;
+function ShowFavColour(value: any) {
+  (<HTMLInputElement>document.getElementById("show-fav-colour")).textContent =
+    value;
 }
 function ShowMonth() {
-  document.getElementById("show-month").textContent = Select_Month.value;
+  (<HTMLInputElement>document.getElementById("show-month")).textContent =
+    Select_Month.value;
 }
 
 //& Personal Details :
@@ -572,33 +645,47 @@ function submitAllValue() {
     PVillage_City2.value.length > 0 &&
     PPin_Code2.value.length > 0
   ) {
-    document.getElementById("sign-in-remaining-fields-submitAll").textContent =
-      "Congratulations.... All Form Submitted.";
-    document.getElementById("sign-in-remaining-fields-submitAll").style.color =
-      "green";
+    (<HTMLInputElement>(
+      document.getElementById("sign-in-remaining-fields-submitAll")
+    )).textContent = "Congratulations.... All Form Submitted Successfully.";
+    (<HTMLInputElement>(
+      document.getElementById("sign-in-remaining-fields-submitAll")
+    )).style.color = "green";
     addToObject();
+    (document.getElementById("clapIMG") as HTMLDivElement).style.display = "block";
   } else {
-    document.getElementById("sign-in-remaining-fields-submitAll").textContent =
-      "Please Fill the required Fields.";
-    document.getElementById("sign-in-remaining-fields-submitAll").style.color =
-      "red";
+    (<HTMLInputElement>(
+      document.getElementById("sign-in-remaining-fields-submitAll")
+    )).textContent = "Please Fill the required Fields.";
+    (<HTMLInputElement>(
+      document.getElementById("sign-in-remaining-fields-submitAll")
+    )).style.color = "red";
   }
   //window.alert("Please, fill all required fields.");
 }
 
 function selectIMAGE() {
-  var preview = document.getElementById("showIMG");
-  var file = document.getElementById("selectIMG").files[0];
-  var reader = new FileReader();
+  // var preview = document.getElementById("showIMG") as HTMLImageElement;
+  // var file = document.getElementById("selectIMG") as HTMLInputElement;
+  // console.log(file.src);
+  // let html = `
+  // <img src="${file.value}">
+  // `;
+  // preview.innerHTML += html;
+}
 
-  reader.onloadend = function () {
-    preview.src = reader.result;
-    Selected_Imagae_Address = reader.result;
+var src = document.getElementById("src");
+var target = document.getElementById("target");
+showImage(src, target);
+function showImage(src: any, target: any) {
+  var fr = new FileReader();
+  // when image is loaded, set the src of the image where you want to display it
+  fr.onload = function (e) {
+    target.src = this.result;
+    Selected_Imagae_Address = src.value;
   };
-
-  if (file) {
-    reader.readAsDataURL(file);
-  } else {
-    preview.src = "";
-  }
+  src.addEventListener("change", function () {
+    // fill fr with image data
+    fr.readAsDataURL(src.files[0]);
+  });
 }

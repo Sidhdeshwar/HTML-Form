@@ -40,6 +40,7 @@
         <div class="main-items it2" id="it2">
           <div class="item-headings">
             <h2>Sign-In Detail's :</h2>
+           
             <b class="mandatory-fields"
               >Note : * denoted fields are mandatory.</b
             >
@@ -166,12 +167,12 @@
                   &nbsp; <b class="mandatory-fields">* </b> State :
                   <select id="p-state" onchange="selectMyState()">
                     <option>Select State ....</option>
-                    <option>MAHARASTRA</option>
-                    <option>KARNATAKA</option>
-                    <option>KERAL</option>
-                    <option>GUJARAT</option>
-                    <option>RAJASTHAN</option>
-                    <option>GOA</option>
+                    <option value="Maharashtra">MAHARASTRA</option>
+                    <option value="karnataka">KARNATAKA</option>
+                    <option value="keral">KERAL</option>
+                    <option value="gujrat">GUJARAT</option>
+                    <option value="rajasthan">RAJASTHAN</option>
+                    <option value="goa">GOA</option>
                   </select>
                   <br />
                   <p id="show-state" class="showAll">Show State :</p>
@@ -207,13 +208,14 @@
                   <input type="text" id="p-road-area" /><br /><br />
 
                   &nbsp; <b class="mandatory-fields">* </b> State :
-                  <select id="p-state" onchange="selectMyState()">
-                    <option>MAHARASTRA</option>
-                    <option>KARNATAKA</option>
-                    <option>KERAL</option>
-                    <option>GUJARAT</option>
-                    <option>RAJASTHAN</option>
-                    <option>GOA</option>
+                  <select id="perment-state" onchange="selectMyState()">
+                    <option>Select State ....</option>
+                    <option value="Maharashtra">MAHARASTRA</option>
+                    <option value="karnataka">KARNATAKA</option>
+                    <option value="keral">KERAL</option>
+                    <option value="gujrat">GUJARAT</option>
+                    <option value="rajasthan">RAJASTHAN</option>
+                    <option value="goa">GOA</option>
                   </select>
                   <br /><br />
                   &nbsp; <b class="mandatory-fields">* </b> Village/City2 :
@@ -246,7 +248,7 @@
               <p class="showAll" id="show-fav-colour">Show Colour ID :</p>
               <br /><br />
 
-              <b
+              <!-- <b
                 >Select File to upload :<input
                   type="file"
                   id="selectIMG"
@@ -254,8 +256,18 @@
                   onchange="selectIMAGE()"
                 /> </b
               ><br /><br />
-              <img id="showIMG" src="" height="200" />
+
+              <div id="showIMG"></div> -->
+
               <p id="img-location">IMG Location</p>
+             <b>Select IMG to Show : </b>
+              <input id="src" type="file" />
+              <!-- input you want to read from (src) -->
+              <br /><br />
+              <img id="target" width="400px" height="200px" />
+              <!-- image you want to display it (target) -->
+              <br /><br>
+
               <b
                 >Month: &nbsp;&nbsp;
                 <input type="month" id="select-month" onchange="ShowMonth()" />
@@ -295,7 +307,8 @@
               ><br /><br />
             </div>
 
-            <b id="sign-in-remaining-fields-submitAll"></b><br />
+            <img id="clapIMG" style="display: none;" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxETExERExMXExYWFhETEhYRExYWEREWGBYXFxYWFhYZHioiGRsnHBYWIzMjJystMDAwGCE2OzYvOiovMC0BCwsLDw4PGxERGC8nIScvLy8tLy0vLy8vLy8vLy0vLy0vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABQYDBAcCAQj/xAA9EAABAwIDBQUFBwMEAwEAAAABAAIDBBEFITEGEkFRYRMiMkJxI1KBkaEHYnKCscHRFDPhJEOS8DRzkxb/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAgMBBAUG/8QAMREAAgECBAMFCAIDAAAAAAAAAAECAxEEEiExBUFRYXGxwfATIjJygZHR4TOhFSNC/9oADAMBAAIRAxEAPwDuKIiAKJx7HYqVm883cfCwHvOPpy6qM2w2rZSARtG9K4XaODR7x+q5vJJJO8yyuL3HnoOgHBAWTBttaiSrZ2lmxSHcDODb6G/NdMBXDKtlrOGRBBFui7HgNcJ4Ipfea0noUBIrWr6yOFjpJDutbmTyWyqx9oh/0co52CAmaDFIZgHRSNdfgHDe+I1C3lwamhLAHMcWHW7SR+iuOwePVs0/Yu9pE0HfcRmzlnxzQHSEREAREQBERAEREAREQBERAEREAREQBERAEREARfCqzSbaUz6iSmJLC1xa1zvA8jWx4IDd2h2egqm2kFnDwvHib/IXNMYwSopHd9u9H5ZG5t+PIrsgKxzRNeC1wDgciCLgoDiZkDmq7/ZhXXjmgJzY7eH4XZAfQrX2k2FIvLS+piJy/KeHoq/sVXOp65scgLN8FjmuyN/L9SgOxKqfaQ+1I7q4BWtVT7RaSWWmDImF7i9uTeHVAc3w2mkqHsgiF3HU8Gji49F2DAcHjpYmxMHVzuLncSVobH7ONpIgDYyuAMjuvIdFYkAREQBERAEREAREQBVrEdtaOEuZvl7m5FsYuQeRzVlXKdvMBEE/9QwezlPe+6/9hogN3EvtIkt7GD4vJB+SvmEVLpYYpXCxexriORIXFKmx3QOJaPmQF23DI92KJvJjR8ggNteHuABJyAzK9qA20xLsKaVwPecNxo4m+R+hQFDq9sKoVUkkbrxhxaIz4SBkbfJdB2f2ihqm3YbPHjY7JzT/AAuT0kVm5r4XPicJYnFjhoQsA7miqexG1Jq2uY9tpI7bxHhcOY5eitiyAiIgI7Hq4QQSzHytJ/b91xSGDeBcT3ib3435rr22GDPqoOyY/cNwTfRw5FU1n2eVQy7WP6/wgGy+2T4C2Gcl8ejX+ZnrzC6VTzte0PY4OacwRoVzST7Oqo/7sfzP8Kb2Q2braSSzpmuhN95mZIP3bjJAXZReJYFTzuZI9g32ODmuGTgQpREB8AX1FE41jDYLNA3nu8Lf3KrqVI0ouc3ZIlCEpvLFaksiqrcYqdbNPT/NlsjaeINO/wBx4GTTo49CtSlxLD1HZO3erF0sLVjyv3FhRUYVssp33PIvoAbAD4LPDPNGd5jyeYdmD81rf5qlmtkduunhuWvAyS+JXLkii8LxZsvdI3XjVp/ZSi6lKrCrFSg7o1JQlB2ktQiIrCIREQBaGMYcyoifC/RwIB908HD0W+iA4RJRyR1TKd4s4SsHqN4EH5LurRYKAxvZpk89PUX3XRHPLxi2QPxVhQBcz+0nEN+eKAHKMb7vxG4t8l0eeUMa55yDQSfQLjVNQ1NfUTSRsNnPN3uya0aBAa76gCwGZ4AalTuB7IVFQQ+a8UXL/cd6Dh8VbdndjoKez3e1k95wyHoNPirOAgNHCcKhp2BkTA0cTxPUlb6IgCIiAIiIAvOa9IgPl1F1G0FOwlpkBI13c7KH22xF7TFAwlu/cvI1sLZfVRlJSNA0XGxvE5UZ+zpr7m9QwilDPN77FwixiBzS4SCwzOeYVOxJzpp3TM8NgG73QZlQGNtAqYm6AC5AOR11VmoCCAudi8dUr04xkkufibdPDxpPOtT0KojJ7bdRoq7tlb2D9RvixVscwFV7aTB3SRkMNiO8BwuFqU3lkmy2DVzZwiqBFlMNVBwWuI7ru65uTgdQeauFFVXUZRdOVmZnHmZp4SCHsNnDMEKwYNiolG67J41HPqFErVniIIew2cMwQtrC4qWGndaxe69czXqU1VjZ78mXZFFYLigmG67J7fEOfUKVXqaVSNWKnB3TOVODg8stwiIrCIRYZqljPE4N9SAvUUjXC7SCOYNwsXV7AyIiLIPEkYcC1wuCLEHQheKenYwBrGhoGgaLBZkQBFEYrtDTU49pIL+603d8gqhif2gvddtPHYe9Jn8QAgOi3X1cfwXFqp9bA6WZzruAsbbtjwtZdgQBERAEREARFBYxtCyF3ZtHaSalo0b6lV1asKUc03ZE4QlN5YrUhtv6Yh0Mw0F2u6Xtb9Fr4dUBwC3ajGXSscyWEFjhnunvDqFWopRHIWNdvjy+96ELzGOdOrN1aUr9VszsUIyUMk1sau10RZLHONPCVJYNWhzRmvWKU8k8RYWjPnwVSgfNTP3ZB3dA7gteMVUhZP3kXrazOkxSXXtwuoHDcQDgDdTcUgIVSfJlMoWK7tBgu97WMWeOXmHIqOwnEc905EZEHUFXVzbqr7RYIT7WIWeNQPMppprLLbk+hZCV9GTlHU3W8qVg2J+U5EZZ6hWilqLqDTg7MjOB6lY5rhIw2cOXHoVrYvjdRKdxruyaBmG+Jx9VJarQraXzDUfVWRrVIRcYy0e5FKLaclqjDgGKywStZI8vjfkd433TzuVc8XrxDC6XWw7vUnRUaeJsjT9eYXyqxovgZTSH2jXXH32C9vlkFv4PHyhSnBvVJtd/rUqr4ZTnGSXf+T6xj5iZJXFzjna/db0AUjgFYYJdxxPZvNhc+F3Ba+Gm4WzVUwcCFzqdadOp7VPUumlJZHsXYL6q/s1im8DC899vhv5m8FYF7GjWjWgpx2fqxxalN05OLCwVUAkY5hJAcCCWmxHoQs6K0gc3xP7NTcvhmLjymz+uqr9ZgdXT+OElvvNzB+AzXaEQHDcIqP8AVU2RB7WMZgg6hdyWjJhUDniQwsLwbhxYN4HndbyAIiIAiIgPi5h2p/qZi7XfOv0XUFRNssJdHJ/UsF2uykA8p970XM4rRlUo3jyN3AzjGbi+ZmbYjJU2gcP6mcnXft8BorBhtYDYXUBjtOYZ+1HgfqeRXnKSvePVHUirNlzgsQFp4nhzZGkEXWDCa4OAzUuDdQS+5W7xZz5zH0z7G/Zk5H3eh6KzYbXAgZrbxTDmyNIIuqad+lfY3LL5H3ehVv8AL83j+y1NSR0GOS6+vF1DYfXhwBBUqyS6qvyZTKNis7R4Mb9tEO8M3AeYfysWEYpewJz0+PJW1zbqp7QYO5hM8Q/G0eYcx1VkWpLLL6PyLYyvoyyUtQCFt6qoYJigNgT89fQq0U8twoNOLyshONtTWq6Yg77dePVVjaDKWCYaXLXdLq7kXUNjuEiVjgMjqPVShaMk3sZjLkzBhtTYqfY64VCw+ocw9lJk9uXRwHEK1YdVjS6xKLg7GZxvqeq+FwIew7rmm7SFZ8Axps7d13dkHibz6jooaQAhRUsRa4Pad1wzBC2MJjJYaV1rF7ooq0VWjZ7rZnR0UDgePNltG/uyDno70U8vVUa0K0c8HdHJnTlCWWSCIitIBERAEREAREQBY5Y2uBa4XByIOhXmqmDGPedGtc4/AXVDfjM1Q4kPLG+UNyy6rTxeMhhksyvfkX0MPKrezslzMe0GDupX9ozOFx/+Z5HohayeMsdncLZZXzRgsl9tGcnNdrboVEbzGSbsD99jhvAHxR/dcvOYhUqn+yjp1XNd3Z4HWp57ZZ6vr17+0hS+Smk7N+nkdwI5K1YXXhwGajcapnzR2ewHkRqFXsLr3wP7OT8p4EKtx9rHMviW/b2/kttdanSQbqNxXDWyNOX+Vkw+rDmggreVS1KdYs52O0pX2dcxk5H3eh6K04dWhwBBWfFsObI0gjVUwOkpH2NzGTkeLOh6K23tvm8f2XJpo6HG669PbdROF4g14BBUsx11SujKpKxTtosHfG4zwi/F7Rx6jqtjAMYDwAT/AN5FWmRgIsVAnZ6NsplYLXNyBpfmrHJONpctn5E4yT0ZOxuyXtwuscLbBZlBbFL3IXFsIbKL6OHhcNQoeAyRv3HjPgeDlcCFrVNK12oWW2lYtjPkzSpqzms7yHLQloHtORuFlhcRqqyVlujWrYSLOabOGbSOBV42axPt4WuPib3X+oVTnbcLa2LqdyaSInJ43m/iGv0C6XC67p1lF7S0/Br4unnpN816ZekRF6k4wREQBERAEREBq4hEXxSsGrmPaPUghcswqUxuMbsi0kG/RddVM2ywAn/UwjvDxtHmHMdVzOJ4Z1YKUd0buCrKDcJczC4B7T6FVXZcgOkB133AqVwmuvkdVFYzCaebt2DuSHv28rua85DVOHN+XI6iVnYuIaCFX8ewJsgOXoRqOoW9heIteApRwBCjFtO60aIaxZz7DMQkp39jL+V3Bw/lXSirQ4BRWPYM2Rpy6i2oPMKAw2vfA/spPyu4OH8q1pVVmitea69qJtXOgXGijsUwxsjSLX/dZqKqDgFuqlFesWc5AkpJM7mMnL7n+Fb8MxEPAIN1nxTDmyNIIuoXC8GdE7uk7t9Dw9FZOSmrv4vH9liaki0tfdeliiGSyhVplLC9IikYC+FfUWTBjexa8sAK2l5cFBommRr22yWmyUxTRSjyuF/Q5FSszFF18VwViMnGSaLVZ6HSo3ggEcRde1D7MVfaU7DxHdPwNv2UwvbUpqpBTXNXOBOLhJxfIIiKwiEREAREQBfCF9RAUfajZ0sJqIB1ewfqFFU07JWFjxcHIgrphCo+1Oz5jJnhGWr2Dh1C4fEeH3vVpfVea8zpYXFX9yb7n5PyKjUwPpZLjOM+E8uhVlwvEA8DNaNPOyZhY/MHLNQ0jZKSSxuYie47l0K4/wDJ83j+zoNX0ZeHNBCruO4K2QHLrlqDzCk8Org8A3W84AqpNp3WjK/hKLhWIyQPEUv5XcHD+VcaSqDgFFY3g7ZGkW6gjUHmFCYRXyRSdhLr5TweFa0qico7815om1cvgK87gWvBJcArYaVVe5U1Y9gIiLJE9IvKLIPSLyiA+r4V6XlYBhkCj6pqknrTqAoMsibmwk9nTRdQ4fLP9VclRdjv/Jf/AOs/qFel6rhcnLDK/Js5mNVqz+gREXRNQIiIAiIgCIiAL4RdfUQHP9qsCMLjPCO4c3tHkPMdFpU8rJmbjwHAjiulSMDgWkXByIPFc62iwZ1LJ2jM4nH/AIHl6LgcSwNv9tP69h1cJiM6VOT15FfkZJSSAEkxk9x3AdCrRh9cHgFabJI5mGOQAgixv+oUEBJSybjjdh/tu5jkeq5X8nzeJu76Mu5AKi67B2vIdbMG4PELJRV4cAt4SKlMr1izFDFugBZmlfCV9CwGe7r7dY19upJkbHu6XXm6XS5ix6uvl18ul0uZPd0XkFLpcxY8uWrOFslYJAosmj3shIxs0u8QHEANvxGV7K7rl9TR3dvaHgRkR8VLYPtJJFaOfvM0D/M315rt8Ox9OnFUp6dv5NXFYaU3njr2fgvSLBT1DHtDmODgdCFnXfTuro5YREWQEREAREQBERAFhqadsjXMeLtcLEFZkTcHMsbwWSleXNu6Mnuu93oVr77J2GN+YOh5HgQuoTRNeC1wBByIKoWPbKviJlgu5mpb5m+nNefxvDXF+0pbdOh1cPi1P3am/XqViIyQP7N5/C7g8fyp+jrQVEyvbK3cfkRofM0rUa98Rs7McHDQ+q5Uln15+tjesXJsl16DlAUuIXUlFUgqlqxBxsb+8l1rtkWTeQxY93X26x7y+byCxl3l6usO8voegsZgV9usQevu8hGx6K8OavYK9WQGs6Jak9PdSdlikaliSkRFHWS0zi6M3be7mHwn06roGE17Z42yNyvqDqCMiqPVx5FXHZun7OCMc7n5kldrg9ao5unf3bXNPHRhlUudyVREXoTmBERAEREAREQBERAEREBAYzsvDPdw9m/3m6H1CqGJ7P1EQO8ztGc25j5FdORaWIwFGtq1Z9UbNLF1Kem67Th07DH3m3I4tPib6LZocRDhcG/6hdVrsCp5b70YvzbkVU8Q+zWJx34ZnRO9Lg/Vc6pwup1T7fyvM3o46m97oioq1bTKtaO0GBS0UbZXu7VpcGktFi3U3t8FDw4m06O/lcurhKlN2kjahKM1eL0LU2oXrtlX2VvVZY64FUODJZSb7VehIo2Oe62GPUTFjdEiyNctRhWVrlgwbbCsrStVrlka9ZINGcrE8r7vLw8oEeGwb7msHEgfDirtCzdAHIAKC2dpbkyn0b+5VhXpOEYfJSdR/wDXgtvyc3GVM0sq5eIREXXNMIiIAiIgCIiAIiIAiIgCIiAIiIDVr6NkzHRvF2uFiuWYhs9HHK6KRtuLHDLeHBddUNtHhInjyye25YePp9FoY7CutDND4lt29ht4XEezlZ7P1c5v/wDmm+WQj1zUViuGzQEO395vQZqz0lQc2uyc3Ig81lrIhIwtK81GvNS97Xqde7KrR12md1KQVt1Wa6ndC8jhfJbFLUrYqUVJZoky2xT3Wy16gKWpUnFMtKUbEWiQa9ZWvWk2Reu0UCNjeD1mo4HSvDB+Y+6Fo0zHSODGC7j9OpV1wugELLauObjzP8LfwGCeInd/Ct+3sXrY1sRWVJab+tTahiDGhoyAFgsqIvWJJKyOOERFkBERAEREAREQBERAEREAREQBERAEREBTNrcDfvieFtyf7jRx+8P+8FHUtLM4f23fJdEXxczEcLp1pueZq/Q3KeNlCKi1exzut2NlnFiAzqdQqBimHS0szoJNRoeDhzC/Qiqe3mzP9VFvsHtWXLfvD3Sn+PhTp2g2+8tpY2Tn7+xy6mqFKU860YNnK0Gxp5P+GSmaDZesdb2Rb+PJcuphpt6Rf2Z0fawX/S+56jmUjh1JJM4NYL8z5WqYwvYu1jM+/wB1uX1VrpKVkbQxjQ0cgrcPwmc3erov7/Rp1sbCOkNX/RqYRhTIG5ZuPicdT6cgpNEXfp0404qMVZI5cpOTu3qERFMiEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBfCvqIYCIiGQiIgCIiAIiID/2Q==" alt="" width="50px" height="50px">
+            <b id="sign-in-remaining-fields-submitAll"></b><br /><br>
             <button
               type="button"
               class="btn btn-primary"
