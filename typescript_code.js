@@ -1,34 +1,33 @@
-"use strict";
 // & Personal Details :
-const FirstName = document.getElementById("firstname");
-const MiddleName = document.getElementById("middlename");
-const LastName = document.getElementById("lastname");
-const Male = document.getElementById("male");
-const Female = document.getElementById("female");
-const DOB_Date = document.getElementById("birth-date");
+var FirstName = document.getElementById("firstname");
+var MiddleName = document.getElementById("middlename");
+var LastName = document.getElementById("lastname");
+var Male = document.getElementById("male");
+var Female = document.getElementById("female");
+var DOB_Date = document.getElementById("birth-date");
 // Address
-const HouseNo = document.getElementById("house-no");
-const Road_Area = document.getElementById("road-area");
-const State = document.getElementById("state"); //* Remaining
-const Village_City1 = document.getElementById("village1");
-const Pin_Code1 = document.getElementById("pin-code-11");
-const Mobile_No1 = document.getElementById("mobile-no1");
-const Telephone_No = document.getElementById("telephone-no");
-const Fav_Colour = document.getElementById("fav-colour");
+var HouseNo = document.getElementById("house-no");
+var Road_Area = document.getElementById("road-area");
+var State = document.getElementById("state"); //* Remaining
+var Village_City1 = document.getElementById("village1");
+var Pin_Code1 = document.getElementById("pin-code-11");
+var Mobile_No1 = document.getElementById("mobile-no1");
+var Telephone_No = document.getElementById("telephone-no");
+var Fav_Colour = document.getElementById("fav-colour");
 //& Other Details :
-const Select_File = document.getElementById("select-file");
+var Select_File = document.getElementById("select-file");
 //const Select_Image = document.getElementById('select-image');
-const Select_Month = document.getElementById("select-month");
-const Select_Range = document.getElementById("select-range");
-const Select_Time = document.getElementById("select-time");
-const Select_Week = document.getElementById("select-week");
-const PHouse_No = document.getElementById("p-house-no");
-const PRoad_Area = document.getElementById("p-road-area");
-const PState = document.getElementById("p-state");
-const Perment_State = document.getElementById("perment-state");
-const PVillage_City = document.getElementById("p-village-city");
-const PPin_Code2 = document.getElementById("pin-code-22");
-const PVillage_City2 = document.getElementById("village2");
+var Select_Month = document.getElementById("select-month");
+var Select_Range = document.getElementById("select-range");
+var Select_Time = document.getElementById("select-time");
+var Select_Week = document.getElementById("select-week");
+var PHouse_No = document.getElementById("p-house-no");
+var PRoad_Area = document.getElementById("p-road-area");
+var PState = document.getElementById("p-state");
+var Perment_State = document.getElementById("perment-state");
+var PVillage_City = document.getElementById("p-village-city");
+var PPin_Code2 = document.getElementById("pin-code-22");
+var PVillage_City2 = document.getElementById("village2");
 // ~LocalStorage :
 var Selected_Gender = "";
 var Selected_Imagae_Address = "";
@@ -47,14 +46,14 @@ function addToObject() {
             Road_Area: Road_Area.value,
             State: PState.value,
             Village_City: Village_City1.value,
-            Pin_Code: Pin_Code1.value,
+            Pin_Code: Pin_Code1.value
         },
         Perment_Address: {
             House_No: PHouse_No.value,
             Road_Area: PRoad_Area.value,
             State: PState.value,
             Village_City: PVillage_City2.value,
-            Pin_Code: PPin_Code2.value,
+            Pin_Code: PPin_Code2.value
         },
         Mobile_No: Mobile_No1.value,
         Select_Color: Fav_Colour.value,
@@ -62,16 +61,16 @@ function addToObject() {
         Select_Range: Select_Range.value,
         Select_Month: Select_Month.value,
         Select_Time: Select_Time.value,
-        Select_Week: Select_Week.value,
+        Select_Week: Select_Week.value
     };
     localStorage.setItem("obj1", JSON.stringify(myForm));
     fetch("https://winter-summer-sceptre.glitch.me/submit", {
         method: "POST",
         body: JSON.stringify(myForm),
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-type": "application/json" }
     })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then(function (response) { return response.json(); })
+        .then(function (json) { return console.log(json); });
 }
 // ^ Automatic Run
 var signInMandatoryCounter = 0;
@@ -84,10 +83,10 @@ var OKSTATE = false;
 var OKVILLAGE = false;
 var OKPIN = false;
 //& Sign in Details :
-const Email_ID = document.getElementById("email-id");
-const UserName = document.getElementById("username");
-const Password = document.getElementById("password");
-const Verify_Password = (document.getElementById("verify-password"));
+var Email_ID = document.getElementById("email-id");
+var UserName = document.getElementById("username");
+var Password = document.getElementById("password");
+var Verify_Password = (document.getElementById("verify-password"));
 var HTML_Form = [
     [1, 2, 3],
     [4, 5, 6],
@@ -97,7 +96,7 @@ var sign_in = {
     email: "C",
     username: "A",
     password: "B",
-    verify_password: "",
+    verify_password: ""
 };
 var personal_details = {
     first_Name: "",
@@ -110,19 +109,19 @@ var personal_details = {
         road_area: "",
         state: "",
         village_city: "",
-        pin_code: "",
+        pin_code: ""
     },
     mobile_No1: "",
     mobile_No2: "",
     telephone_No: "",
-    fav_Colour: "",
+    fav_Colour: ""
 };
 var other_details = {
     select_file: "",
     select_month: "",
     select_range: "",
     select_time: "",
-    select_week: "",
+    select_week: ""
 };
 function checkForSignIn() {
     if (Email_ID.value.length == 0 ||
@@ -152,7 +151,7 @@ function checkForSignIn() {
 function createAccount() {
     sign_in.email = Email_ID.value;
     //^ For Checking OF proper E-Mail _ID
-    let emails = Email_ID.value;
+    var emails = Email_ID.value;
     document.getElementById("incorrect-email").textContent =
         "";
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
@@ -164,7 +163,7 @@ function createAccount() {
     else {
         signInMandatoryCounter++;
     }
-    for (let i = 0; i < emails.length; i++) {
+    for (var i = 0; i < emails.length; i++) {
         if (emails[i] >= "A" && emails[i] <= "Z") {
             (document.getElementById("incorrect-email")).textContent = "In-Correct Email Format";
             (document.getElementById("incorrect-email")).style.color = "red";
@@ -177,18 +176,18 @@ function createAccount() {
     document.getElementById("registered-email").innerHTML =
         Email_ID.value;
     //  ^For checking OK Create Password :
-    let capital = 0;
-    let small = 0;
-    let numbers = 0;
-    let symbols = 0;
-    let okpassword = 0;
-    let pass = Password.value;
-    let Error = [];
+    var capital = 0;
+    var small = 0;
+    var numbers = 0;
+    var symbols = 0;
+    var okpassword = 0;
+    var pass = Password.value;
+    var Error = [];
     (document.getElementById("create-password-wrong")).innerHTML = "";
     if (pass.length < 8) {
         Error.push("Your password must be contain min 8 character's.");
     }
-    for (let i = 0; i < pass.length; i++) {
+    for (var i = 0; i < pass.length; i++) {
         if (pass[i] >= "A" && pass[i] <= "Z")
             capital++;
         if (pass[i] >= "a" && pass[i] <= "z")
@@ -215,14 +214,14 @@ function createAccount() {
         okpassword++;
     }
     if (okpassword != 0) {
-        for (let i = 0; i < Error.length; i++) {
+        for (var i = 0; i < Error.length; i++) {
             (document.getElementById("create-password-wrong")).innerHTML += " " + Error[i] + "<br>";
             (document.getElementById("create-password-wrong")).style.color = "green";
             signInMandatoryCounter++;
         }
     }
     else {
-        for (let i = 0; i < Error.length; i++) {
+        for (var i = 0; i < Error.length; i++) {
             (document.getElementById("create-password-wrong")).innerHTML += i + 1 + ". " + Error[i] + "<br>";
             (document.getElementById("create-password-wrong")).style.color = "red";
         }
@@ -239,27 +238,7 @@ function createAccount() {
         OKVERIFYPASSWORD++;
     }
     if (signInMandatoryCounter == 4) {
-        (document.getElementById("sign-in-remaining-fields")).innerHTML = `
-      
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Your Account Created Successfully...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK  </button>
-      </div>
-    </div>
-  </div>
-</div>
-      
-      `;
+        (document.getElementById("sign-in-remaining-fields")).innerHTML = "\n      \n      <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">Modal title</h1>\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n        Your Account Created Successfully...\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" data-bs-dismiss=\"modal\">OK  </button>\n      </div>\n    </div>\n  </div>\n</div>\n      \n      ";
     }
     else {
         (document.getElementById("sign-in-remaining-fields")).textContent = "Please, fill the required fields...";
@@ -296,18 +275,18 @@ function check() {
 //* For Showing Runtime Create Password :
 function runtimeCreatePassword() {
     //  ^For checking OK Create Password :
-    let capital = 0;
-    let small = 0;
-    let numbers = 0;
-    let symbols = 0;
-    let okpassword = 0;
-    let pass = Password.value;
-    let Error = [];
+    var capital = 0;
+    var small = 0;
+    var numbers = 0;
+    var symbols = 0;
+    var okpassword = 0;
+    var pass = Password.value;
+    var Error = [];
     (document.getElementById("create-password-wrong")).innerHTML = "";
     if (pass.length < 8) {
         Error.push("Your password must be contain min 8 character's.");
     }
-    for (let i = 0; i < pass.length; i++) {
+    for (var i = 0; i < pass.length; i++) {
         if (pass[i] >= "A" && pass[i] <= "Z")
             capital++;
         if (pass[i] >= "a" && pass[i] <= "z")
@@ -334,7 +313,7 @@ function runtimeCreatePassword() {
         okpassword++;
     }
     if (okpassword != 0) {
-        for (let i = 0; i < Error.length; i++) {
+        for (var i = 0; i < Error.length; i++) {
             document.getElementById("create-password-wrong").innerHTML += " " + Error[i] + "<br>";
             (document.getElementById("create-password-wrong")).style.color = "green";
             OKCREATEPASSWORD = true;
@@ -343,7 +322,7 @@ function runtimeCreatePassword() {
         }
     }
     else {
-        for (let i = 0; i < Error.length; i++) {
+        for (var i = 0; i < Error.length; i++) {
             (document.getElementById("create-password-wrong")).innerHTML += i + 1 + ". " + Error[i] + "<br>";
             (document.getElementById("create-password-wrong")).style.color = "red";
             OKCREATEPASSWORD = false;
@@ -366,7 +345,7 @@ function runtimePasswordChecking() {
 }
 //! Showing Wrong Field
 function showWrongEmail() {
-    let emails = Email_ID.value;
+    var emails = Email_ID.value;
     document.getElementById("incorrect-email").textContent =
         "";
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)) {
@@ -449,8 +428,8 @@ function ShowMonth() {
         Select_Month.value;
 }
 //& Personal Details :
-const PERPin = document.getElementById("per-pin");
-const PERVillage = document.getElementById("per-villege");
+var PERPin = document.getElementById("per-pin");
+var PERVillage = document.getElementById("per-villege");
 function submitAllValue() {
     if (OKSTATE == true &&
         Village_City1.value.length > 0 &&
