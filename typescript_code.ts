@@ -213,7 +213,7 @@ function checkForSignIn() {
     Password.value.length == 0 ||
     Verify_Password.value.length == 0
   ) {
-    // window.alert(OKUSERNAME);
+    // window.alert("");
     (<HTMLInputElement>(
       document.getElementById("sign-in-remaining-fields")
     )).textContent = "Please, fill the required fields...";
@@ -229,7 +229,7 @@ function checkForSignIn() {
     (document.getElementById("it3") as HTMLDivElement).style.display = "block";
     (document.getElementById("it2") as HTMLDivElement).style.display = "none";
 
-    // window.alert(OKUSERNAME);
+    window.alert("Congrats... Your Account has been Created Successfully... ");
     createAccount();
 
     (<HTMLInputElement>(
